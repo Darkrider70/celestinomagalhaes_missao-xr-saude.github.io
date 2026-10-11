@@ -1,0 +1,1829 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Missão XR Saúde</title>
+<meta name="description" content="Escape room bilingue (PT/EN) sobre realidade virtual para a educação para a saúde e a profissão de Especialista em Formação e Mentoria XR em Saúde. STEM Jobs for the Future.">
+<meta name="author" content="Celestino Magalhães">
+<meta name="theme-color" content="#0a2c6b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Missão XR Saúde · XR Health Mission">
+<meta property="og:description" content="Escape room bilingue (PT/EN) para crianças dos 8 aos 12 anos sobre realidade virtual na educação para a saúde. STEM Jobs for the Future.">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:locale:alternate" content="en_GB">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231aa6e4'/%3E%3Cstop offset='1' stop-color='%230b5cad'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M16 3h32l16 29-16 29H16L0 32z'/%3E%3Cpath fill='%23fff' d='M14 22h36a6 6 0 0 1 6 6v10a7 7 0 0 1-7 7h-8a5 5 0 0 1-4-2.4l-2-3.4a3.4 3.4 0 0 0-6 0l-2 3.4a5 5 0 0 1-4 2.4h-8a7 7 0 0 1-7-7V28a6 6 0 0 1 6-6z'/%3E%3Ccircle cx='22' cy='33' r='4.5' fill='%230b5cad'/%3E%3Ccircle cx='42' cy='33' r='4.5' fill='%230b5cad'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600;700&display=swap">
+<style>
+[hidden]{display:none!important}
+img{max-width:100%}
+/* Layout: a single centred column of light panels floating over a deep-ocean VR gradient with a perspective grid floor; the lab map is a honeycomb of hexagonal portals (echoing the STEM Jobs hexagon). Single deliberate look in both OS themes. */
+:root {
+  --abyss: #041530;
+  --deep: #0a2c6b;
+  --ocean: #0b5cad;
+  --sky: #1aa6e4;
+  --ice: #eaf5fd;
+  --paper: #ffffff;
+  --ink: #0b2545;
+  --ink-soft: #46617f;
+  --line: #cfe2f2;
+  --lime: #c9e64b;
+  --lime-deep: #a9c62a;
+  --lime-ink: #253000;
+  --ok: #12804a;
+  --ok-bg: #e2f6ea;
+  --bad: #c43b2f;
+  --bad-bg: #fdecea;
+  --sel: #0b5cad;
+  --sel-bg: #dceefb;
+  --glass: rgba(255, 255, 255, 0.10);
+  --glass-line: rgba(255, 255, 255, 0.22);
+  --on-dark: #f2f8ff;
+  --on-dark-soft: #b9d3ee;
+  --font-display: "Baloo 2", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Lexend", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --r-lg: 22px;
+  --r-md: 14px;
+  --r-sm: 10px;
+  --shadow: 0 18px 40px -18px rgba(2, 16, 45, 0.55);
+  color-scheme: light;
+}
+:root[data-contrast] {
+  --abyss: #000a1c;
+  --deep: #00163a;
+  --ocean: #00285e;
+  --sky: #00285e;
+  --ink: #000000;
+  --ink-soft: #1c1c1c;
+  --line: #000000;
+  --ok: #005c2e;
+  --bad: #9e1a10;
+  --sel: #00285e;
+  --sel-bg: #ffe97a;
+  --glass: rgba(255, 255, 255, 0.16);
+  --glass-line: #ffffff;
+  --on-dark: #ffffff;
+  --on-dark-soft: #ffffff;
+  --lime: #e6ff4d;
+}
+html { font-size: 100%; }
+html[data-big] { font-size: 118.75%; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--abyss);
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgba(26, 166, 228, 0.45), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(11, 92, 173, 0.55), transparent 65%),
+    linear-gradient(170deg, var(--abyss) 0%, var(--deep) 45%, var(--ocean) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+body::after {
+  /* VR grid floor */
+  content: "";
+  position: fixed;
+  left: -50%; right: -50%; bottom: -10vh;
+  height: 45vh;
+  background-image:
+    linear-gradient(rgba(140, 210, 255, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 210, 255, 0.22) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(420px) rotateX(62deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+}
+:root[data-contrast] body::after { display: none; }
+#app { position: relative; z-index: 1; }
+.wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding-inline: 20px; }
+.narrow { max-width: 860px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(4, 21, 48, 0.72);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-line);
+}
+:root[data-contrast] .topbar { background: #000a1c; }
+.topbar .wrap { display: flex; align-items: center; gap: 12px 16px; flex-wrap: wrap; padding-block: 10px; }
+.brand {
+  display: flex; align-items: center; gap: 10px; color: var(--on-dark);
+  background: none; border: 0; padding: 4px; cursor: pointer; border-radius: 12px;
+}
+.brand-mark {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  background: linear-gradient(140deg, var(--sky), var(--ocean));
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0 50%);
+}
+.brand-mark svg { width: 22px; height: 22px; }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; letter-spacing: 0.01em; }
+.top-mid { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; justify-content: center; min-width: 0; }
+.inv { display: flex; gap: 5px; }
+.inv span {
+  width: 28px; height: 32px; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+  border-radius: 8px; border: 1px dashed var(--glass-line); color: var(--on-dark-soft);
+}
+.inv span.got { background: var(--lime); color: var(--lime-ink); border: 1px solid var(--lime); }
+.timer {
+  font-variant-numeric: tabular-nums; color: var(--on-dark); font-weight: 600;
+  display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--glass-line); background: var(--glass); font-size: 0.9rem;
+}
+.top-right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.seg { display: inline-flex; border: 1px solid var(--glass-line); border-radius: 999px; padding: 3px; background: var(--glass); }
+.seg button {
+  border: 0; background: none; color: var(--on-dark-soft); padding: 4px 11px; border-radius: 999px;
+  font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.icon-btn {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--glass-line);
+  background: var(--glass); color: var(--on-dark); border-radius: 999px; padding: 6px 12px;
+  font-size: 0.88rem; font-weight: 500; cursor: pointer;
+}
+.icon-btn svg { width: 18px; height: 18px; flex: none; }
+.icon-btn:hover { background: rgba(255, 255, 255, 0.18); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 999px; padding: 12px 22px; border: 2px solid transparent;
+  font-weight: 600; font-size: 1rem; cursor: pointer; text-decoration: none;
+  transition: transform 0.12s ease, background-color 0.15s ease;
+}
+.btn svg { width: 20px; height: 20px; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--lime); color: var(--lime-ink); border-color: var(--lime); box-shadow: 0 8px 20px -10px rgba(169, 198, 42, 0.9); }
+.btn-primary:hover { background: var(--lime-deep); border-color: var(--lime-deep); }
+.btn-blue { background: var(--ocean); color: #fff; }
+.btn-blue:hover { background: var(--deep); }
+.btn-ghost { background: transparent; color: var(--ocean); border-color: var(--line); }
+.btn-ghost:hover { background: var(--ice); }
+.btn-light { background: var(--glass); color: var(--on-dark); border-color: var(--glass-line); }
+.btn-light:hover { background: rgba(255, 255, 255, 0.2); }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* ---------- panels ---------- */
+main { padding-block: 28px 80px; }
+.panel { background: var(--paper); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: clamp(18px, 3.4vw, 32px); }
+:root[data-contrast] .panel { border: 2px solid #000; }
+.stack { display: grid; gap: 18px; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.76rem; font-weight: 600; color: var(--ink-soft); }
+.on-dark .eyebrow, .eyebrow.light { color: var(--on-dark-soft); }
+.lead { font-size: 1.08rem; color: var(--ink-soft); max-width: 62ch; }
+
+/* ---------- home ---------- */
+.hero { display: grid; gap: 18px; color: var(--on-dark); padding-block: 10px 6px; }
+.hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.4rem); font-weight: 800; letter-spacing: -0.01em; }
+.hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--lime), #7fe0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+:root[data-contrast] .hero h1 em { color: var(--lime); background: none; }
+.hero .lead { color: var(--on-dark-soft); font-size: 1.12rem; }
+.home-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.career {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center;
+  border-radius: var(--r-md); padding: 16px; background: linear-gradient(135deg, var(--ice), #f5fbff);
+  border: 1px solid var(--line);
+}
+.career .hexicon { width: 64px; height: 64px; display: grid; place-items: center; background: linear-gradient(140deg, var(--sky), var(--ocean)); clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0 50%); }
+.career .hexicon svg { width: 34px; height: 34px; }
+.career h3 { font-size: 1.2rem; color: var(--ocean); }
+.field { display: grid; gap: 6px; }
+.field label, .label { font-weight: 600; font-size: 0.95rem; }
+.input {
+  width: 100%; border: 2px solid var(--line); border-radius: var(--r-sm); padding: 11px 14px;
+  font: inherit; color: var(--ink); background: #fbfdff;
+}
+.input:focus { border-color: var(--ocean); outline: none; box-shadow: 0 0 0 3px rgba(11, 92, 173, 0.2); }
+.levels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.level {
+  text-align: left; border: 2px solid var(--line); background: #fbfdff; border-radius: var(--r-md);
+  padding: 14px; cursor: pointer; display: grid; gap: 4px;
+}
+.level strong { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.1; }
+.level .age { font-weight: 600; color: var(--ocean); font-size: 0.9rem; }
+.level .desc { font-size: 0.88rem; color: var(--ink-soft); }
+.level[aria-pressed="true"] { border-color: var(--ocean); background: var(--sel-bg); box-shadow: inset 0 0 0 1px var(--ocean); }
+.switch { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.switch input { width: 22px; height: 22px; accent-color: var(--ocean); }
+.small { font-size: 0.86rem; color: var(--ink-soft); }
+.how { display: grid; gap: 10px; counter-reset: how; padding: 0; margin: 0; list-style: none; }
+.how li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: center; }
+.how li::before {
+  counter-increment: how; content: counter(how);
+  width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--ice); color: var(--ocean); font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
+}
+.confirm { border: 2px solid var(--bad); background: var(--bad-bg); border-radius: var(--r-md); padding: 14px; display: grid; gap: 10px; }
+
+/* ---------- map ---------- */
+.map-head { color: var(--on-dark); display: grid; gap: 8px; margin-bottom: 26px; }
+.map-head h1 { font-size: clamp(2rem, 4.6vw, 3rem); }
+.map-head .lead { color: var(--on-dark-soft); }
+.hexgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 18px; padding-bottom: 120px; }
+.hexcell { position: relative; aspect-ratio: 1 / 0.9; }
+.hexcell:nth-child(even) { transform: translateY(52%); }
+.hex {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: none; padding: 0;
+  cursor: pointer; border-radius: 14px; color: var(--ink);
+}
+.hex[disabled] { cursor: not-allowed; }
+.hex-shape {
+  position: absolute; inset: 0;
+  clip-path: polygon(25% 2%, 75% 2%, 100% 50%, 75% 98%, 25% 98%, 0 50%);
+  background: var(--paper);
+  transition: transform 0.18s ease;
+}
+.hex:hover:not([disabled]) .hex-shape { transform: scale(1.04); }
+.hex-shape::after {
+  content: ""; position: absolute; inset: 5px;
+  clip-path: polygon(25% 2%, 75% 2%, 100% 50%, 75% 98%, 25% 98%, 0 50%);
+  background: linear-gradient(160deg, #ffffff, var(--ice));
+}
+.hex.is-solved .hex-shape { background: var(--lime); }
+.hex.is-solved .hex-shape::after { background: linear-gradient(160deg, #f7ffd8, #e3f4a0); }
+.hex.is-locked .hex-shape { background: rgba(255, 255, 255, 0.25); }
+.hex.is-locked .hex-shape::after { background: linear-gradient(160deg, rgba(10, 44, 107, 0.92), rgba(4, 21, 48, 0.92)); }
+.hex.is-door .hex-shape { background: linear-gradient(140deg, var(--sky), var(--lime)); }
+.hex.is-door .hex-shape::after { background: linear-gradient(160deg, #0b5cad, #041530); }
+.hex-in {
+  position: absolute; inset: 14% 18%; display: grid; place-content: center; text-align: center; gap: 2px;
+}
+.hex-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 2.3rem); line-height: 1; color: var(--ocean); }
+.hex-title { font-weight: 600; font-size: clamp(0.72rem, 1.5vw, 0.92rem); line-height: 1.2; }
+.hex-status { font-size: clamp(0.66rem, 1.3vw, 0.78rem); color: var(--ink-soft); }
+.hex.is-locked .hex-num, .hex.is-locked .hex-title, .hex.is-locked .hex-status,
+.hex.is-door .hex-num, .hex.is-door .hex-title, .hex.is-door .hex-status { color: var(--on-dark); }
+.hex.is-door .hex-num { color: var(--lime); }
+.hex .lock svg { width: 20px; height: 20px; margin: 0 auto; }
+.stars { display: inline-flex; gap: 2px; justify-content: center; }
+.stars svg { width: 16px; height: 16px; }
+.star-on { color: #e2a400; }
+.star-off { color: #c7d5e3; }
+.map-foot { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; color: var(--on-dark-soft); }
+
+/* ---------- room ---------- */
+.crumb { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; color: var(--on-dark-soft); font-size: 0.92rem; margin-bottom: 10px; }
+.crumb button { background: none; border: 0; color: var(--on-dark); cursor: pointer; display: inline-flex; gap: 6px; align-items: center; padding: 4px 0; font-weight: 500; }
+.crumb button svg { width: 18px; height: 18px; }
+.room-title { color: var(--on-dark); display: grid; gap: 6px; margin-bottom: 18px; }
+.room-title h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+.tabs { display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-line); margin-bottom: 18px; flex-wrap: wrap; }
+.tabs button { border: 0; background: none; color: var(--on-dark); padding: 8px 16px; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+.tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); }
+.story { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: start; }
+.story p { font-size: 1.06rem; }
+.goal { display: flex; gap: 10px; align-items: flex-start; background: var(--ice); border-radius: var(--r-md); padding: 12px 14px; font-size: 0.95rem; }
+.goal svg { width: 22px; height: 22px; color: var(--ocean); flex: none; margin-top: 1px; }
+.stepper { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.stepper .dot { width: 34px; height: 8px; border-radius: 99px; background: var(--line); }
+.stepper .dot.done { background: var(--ok); }
+.stepper .dot.now { background: var(--ocean); }
+.stepper .lbl { font-size: 0.85rem; color: var(--ink-soft); margin-left: 4px; }
+.prompt { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.55rem); line-height: 1.2; }
+.help { font-size: 0.9rem; color: var(--ink-soft); }
+.rules { border: 1px dashed var(--ocean); border-radius: var(--r-sm); padding: 10px 12px; font-size: 0.92rem; color: var(--ocean); background: #f6fbff; }
+.quote { font-style: italic; border-left: 4px solid var(--sky); padding: 6px 0 6px 14px; color: var(--ink-soft); }
+
+/* cards used by puzzles */
+.cardbtn {
+  text-align: left; border: 2px solid var(--line); background: #fbfdff; border-radius: var(--r-md);
+  padding: 12px 14px; cursor: pointer; width: 100%; line-height: 1.35; display: flex; gap: 10px; align-items: center;
+}
+.cardbtn:hover { border-color: #9cc4e6; }
+.cardbtn[aria-pressed="true"] { border-color: var(--sel); background: var(--sel-bg); }
+.cardbtn.is-ok { border-color: var(--ok); background: var(--ok-bg); }
+.cardbtn.is-bad { border-color: var(--bad); background: var(--bad-bg); }
+.badge {
+  flex: none; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 8px; display: grid; place-items: center;
+  font-weight: 700; font-size: 0.9rem; background: var(--ice); color: var(--ocean);
+}
+.cardbtn[aria-pressed="true"] .badge { background: var(--ocean); color: #fff; }
+
+/* order */
+.slots { display: grid; gap: 8px; counter-reset: slot; }
+.slot { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; }
+.slot .n { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--ocean); color: #fff; font-weight: 700; font-family: var(--font-display); }
+.slot .empty { border: 2px dashed var(--line); border-radius: var(--r-md); min-height: 50px; display: grid; align-items: center; padding: 0 14px; color: #9db3c8; font-size: 0.9rem; }
+.slot-ends { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; color: var(--ocean); text-transform: uppercase; letter-spacing: 0.08em; }
+.pool { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.area-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }
+
+/* match */
+.match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 16px; align-items: start; }
+.match .col { display: grid; gap: 8px; }
+
+/* sort */
+.sort { display: grid; gap: 10px; }
+.sort-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; border: 2px solid var(--line); border-radius: var(--r-md); padding: 10px 12px; background: #fbfdff; }
+.sort-row.is-ok { border-color: var(--ok); background: var(--ok-bg); }
+.sort-row.is-bad { border-color: var(--bad); background: var(--bad-bg); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.chip { border: 2px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 12px; cursor: pointer; font-weight: 600; font-size: 0.88rem; }
+.chip[aria-pressed="true"] { background: var(--ocean); color: #fff; border-color: var(--ocean); }
+
+/* options */
+.options { display: grid; gap: 8px; }
+.datatable-wrap { overflow-x: auto; }
+.datatable { border-collapse: collapse; width: 100%; min-width: 360px; font-variant-numeric: tabular-nums; }
+.datatable th, .datatable td { border: 1px solid var(--line); padding: 8px 10px; text-align: center; }
+.datatable th { background: var(--ice); font-size: 0.88rem; }
+.datatable td:first-child, .datatable th:first-child { text-align: left; font-weight: 600; }
+.datatable .x { color: var(--bad); font-weight: 700; }
+.datatable .v { color: var(--ok); font-weight: 700; }
+
+/* spot scene */
+.scene {
+  position: relative; border-radius: var(--r-md); padding: 18px; display: grid; gap: 12px;
+  background: linear-gradient(160deg, #0e3b80, #0a2c6b); color: #fff; border: 2px solid #0a2c6b;
+}
+.scene-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 0.78rem; color: #b9d3ee; letter-spacing: 0.08em; text-transform: uppercase; }
+.scene-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 12px; }
+.spot {
+  border: 2px dashed rgba(255, 255, 255, 0.35); border-radius: 12px; background: rgba(255, 255, 255, 0.07);
+  color: #fff; padding: 10px 12px; cursor: pointer; text-align: left; display: grid; gap: 6px; align-content: start;
+}
+.spot:hover { border-color: #fff; }
+.spot.found { border: 3px solid #ff8a7a; background: rgba(255, 120, 100, 0.18); }
+.spot.checked { border: 3px solid #8be0a6; }
+.spot .tag { justify-self: start; font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: #ff8a7a; color: #3a0600; }
+.spot.checked .tag { background: #8be0a6; color: #00351a; }
+.spot-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
+.spot-long { font-size: 0.95rem; line-height: 1.4; }
+.pic { display: grid; place-items: center; height: 92px; border-radius: 10px; background: rgba(255,255,255,0.12); }
+.pic svg { width: 56px; height: 56px; }
+.faint-btn { justify-self: start; font-size: 0.7rem; color: #4d6e93; background: #31527a; border-radius: 6px; padding: 3px 8px; }
+.audio-row { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+.audio-row svg { width: 26px; height: 26px; }
+.next-cue { justify-self: end; background: var(--lime); color: var(--lime-ink); font-weight: 700; padding: 8px 16px; border-radius: 999px; font-size: 1rem; }
+.found-count { font-weight: 600; color: var(--ocean); }
+
+/* reflect */
+.reflect { display: grid; gap: 14px; }
+textarea.input { min-height: 84px; resize: vertical; }
+
+/* feedback + actions */
+.feedback { border-radius: var(--r-md); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; }
+.feedback svg { width: 24px; height: 24px; flex: none; }
+.feedback.ok { background: var(--ok-bg); color: #0b4f2e; border: 2px solid var(--ok); }
+.feedback.bad { background: var(--bad-bg); color: #6d1a12; border: 2px solid var(--bad); }
+.feedback.hint { background: #fff8db; color: #5a4300; border: 2px solid #e2b400; }
+.feedback.info { background: var(--ice); color: var(--ink); border: 2px solid var(--line); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.actions .btn-row:last-child { margin-left: auto; }
+
+/* room done */
+.done-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; }
+.letter-tile {
+  width: 96px; height: 106px; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 3.4rem; color: var(--lime-ink);
+  background: linear-gradient(150deg, #e7ff8a, var(--lime));
+  clip-path: polygon(25% 2%, 75% 2%, 100% 50%, 75% 98%, 25% 98%, 0 50%);
+  animation: pop 0.6s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+@keyframes pop { from { transform: scale(0.4) rotate(-12deg); } to { transform: scale(1) rotate(0); } }
+.done-head h2 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); color: var(--ocean); }
+.debrief { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.debrief div { background: var(--ice); border-radius: var(--r-md); padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.debrief strong { font-family: var(--font-display); color: var(--ocean); font-size: 1.05rem; }
+.fact { display: flex; gap: 12px; align-items: flex-start; border: 2px solid var(--lime-deep); border-radius: var(--r-md); padding: 12px 14px; background: #fbffe9; }
+.fact svg { width: 24px; height: 24px; flex: none; color: #6a7f00; }
+
+/* mission */
+.missions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.mission { border: 2px solid var(--line); border-radius: var(--r-lg); padding: 18px; display: grid; gap: 12px; align-content: start; background: #fbfdff; }
+.mission.mine { border-color: var(--ocean); background: #f3f9ff; box-shadow: inset 0 0 0 1px var(--ocean); }
+.mission-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pill { display: inline-flex; gap: 6px; align-items: center; border-radius: 999px; padding: 3px 10px; font-size: 0.8rem; font-weight: 600; background: var(--ice); color: var(--ocean); }
+.pill.lime { background: var(--lime); color: var(--lime-ink); }
+.pill svg { width: 14px; height: 14px; }
+.mission h3 { font-size: 1.3rem; }
+.mission ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.meta { display: grid; gap: 4px; font-size: 0.9rem; }
+.meta b { color: var(--ink); }
+
+/* door */
+.door-tiles { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.tile {
+  width: 62px; height: 70px; border: 0; cursor: pointer;
+  font-family: var(--font-display); font-weight: 800; font-size: 2rem; color: var(--lime-ink);
+  background: var(--lime); clip-path: polygon(25% 2%, 75% 2%, 100% 50%, 75% 98%, 25% 98%, 0 50%);
+}
+.tile[disabled] { opacity: 0.25; cursor: default; }
+.word { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; min-height: 74px; }
+.word span {
+  width: 52px; height: 64px; display: grid; place-items: center; border-radius: 12px;
+  border: 2px dashed var(--line); font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; color: var(--ocean);
+}
+.word span.f { border: 2px solid var(--ocean); background: var(--sel-bg); }
+
+/* certificate */
+.cert { position: relative; overflow: hidden; text-align: center; display: grid; gap: 14px; justify-items: center; border: 3px solid var(--ocean); }
+.cert::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(600px 220px at 50% -20%, rgba(26, 166, 228, 0.22), transparent 70%);
+}
+.cert h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--ocean); }
+.cert .team { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800; }
+.cert-word { display: flex; gap: 6px; }
+.cert-word span { width: 46px; height: 52px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; color: var(--lime-ink); background: var(--lime); clip-path: polygon(25% 2%, 75% 2%, 100% 50%, 75% 98%, 25% 98%, 0 50%); }
+.cert-stats { display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: center; font-variant-numeric: tabular-nums; }
+.cert-stats div { display: grid; }
+.cert-stats b { font-family: var(--font-display); font-size: 1.5rem; color: var(--ocean); }
+.thoughts { text-align: left; width: 100%; max-width: 640px; display: grid; gap: 10px; }
+.thoughts div { background: var(--ice); border-radius: var(--r-md); padding: 10px 14px; }
+.thoughts i { color: var(--ink-soft); font-size: 0.9rem; display: block; }
+
+/* teacher */
+.tgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tcard { border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.tcard h3 { font-size: 1.15rem; color: var(--ocean); }
+.ttable-wrap { overflow-x: auto; }
+.ttable { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 0.92rem; }
+.ttable th, .ttable td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ttable th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+.ttable td:last-child, .ttable th:last-child { text-align: center; font-variant-numeric: tabular-nums; }
+
+/* overlay (adaptations) */
+.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(2, 10, 26, 0.55); display: grid; place-items: start center; padding: 80px 16px 16px; }
+.sheet { width: 100%; max-width: 420px; background: var(--paper); border-radius: var(--r-lg); padding: 22px; display: grid; gap: 14px; box-shadow: var(--shadow); }
+.sheet h2 { font-size: 1.5rem; }
+
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 500; box-shadow: var(--shadow); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .home-grid, .missions, .tgrid { grid-template-columns: 1fr; }
+  .debrief { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-inline: 16px; }
+  .topbar { position: relative; top: auto; }
+  .hexgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; padding-bottom: 90px; }
+  .levels { grid-template-columns: 1fr; }
+  .match { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .match .cardbtn { font-size: 0.88rem; padding: 10px; }
+  .scene-grid { grid-template-columns: 1fr; }
+  .sort-row { grid-template-columns: 1fr; }
+  .chips { justify-content: flex-start; }
+  .top-mid { order: 3; flex-basis: 100%; justify-content: space-between; }
+  .brand-name { font-size: 1.1rem; }
+  .icon-btn .lbl { display: none; }
+  .done-head { grid-template-columns: 1fr; justify-items: start; }
+  .story { grid-template-columns: 1fr; }
+  .tile { width: 52px; height: 58px; font-size: 1.7rem; }
+  .word span { width: 40px; height: 52px; font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar" id="top"></header>
+  <main id="main"><div class="wrap"><section class="hero"><h1>Missão <em>XR</em> Saúde</h1><p class="lead">A carregar o laboratório…</p></section></div></main>
+  <div id="ov"></div>
+  <div id="toast"></div>
+</div>
+<noscript><p style="color:#fff;padding:16px">Este jogo precisa de JavaScript ativo no navegador. / This game needs JavaScript enabled in your browser.</p></noscript>
+<script>
+/* ===== Game content: every string is [PT-PT, EN-GB] ===== */
+const STR = {
+  brand: ["Missão XR Saúde", "XR Health Mission"],
+  eyebrow: ["STEM Jobs for the Future · Realidade virtual para a saúde e o bem-estar", "STEM Jobs for the Future · Virtual reality for health and well-being"],
+  homeLead: ["O Laboratório XR do Hospital Pedagógico ficou bloqueado! Amanhã, enfermeiros e paramédicos vão treinar numa clínica virtual, mas o sistema perdeu as peças. A vossa equipa de Designers Júnior de Saúde XR tem de reparar 7 salas. Cada sala dá-vos uma letra do código secreto. Juntem as 7 letras para abrir a porta de saída.",
+    "The XR Lab at the Teaching Hospital is locked! Tomorrow, nurses and paramedics will train in a virtual clinic, but the system has lost its pieces. Your team of Junior XR Health Designers must repair 7 rooms. Each room gives you one letter of the secret code. Put the 7 letters together to open the exit door."],
+  careerTitle: ["A profissão em destaque", "Career in focus"],
+  careerName: ["Especialista em Formação e Mentoria XR em Saúde", "XR Health Training & Mentoring Specialist"],
+  careerText: ["A pessoa que usa a realidade virtual para ajudar médicos, enfermeiros e cuidadores a aprender a cuidar melhor de nós.", "The person who uses virtual reality to help doctors, nurses and carers learn how to look after us better."],
+  teamLabel: ["Nome da equipa", "Team name"],
+  teamPh: ["Ex.: Os Micróbios Valentes", "e.g. The Brave Microbes"],
+  levelLabel: ["Escolham o nível", "Choose your level"],
+  explorer: ["Exploradores", "Explorers"],
+  explorerAge: ["8–9 anos", "Ages 8–9"],
+  explorerDesc: ["Menos peças em cada desafio e frases mais curtas.", "Fewer pieces in each puzzle and shorter sentences."],
+  specialist: ["Especialistas", "Specialists"],
+  specialistAge: ["10–12 anos", "Ages 10–12"],
+  specialistDesc: ["Mais peças e um desafio extra em cada sala.", "More pieces and an extra puzzle in every room."],
+  timerLabel: ["Usar cronómetro", "Use a stopwatch"],
+  timerNote: ["Conta o tempo da equipa até abrir a porta.", "Times your team until the door opens."],
+  start: ["Começar a missão", "Start the mission"],
+  cont: ["Continuar a missão", "Continue the mission"],
+  newGame: ["Começar de novo", "Start again"],
+  newGameConfirm: ["Isto apaga o progresso desta equipa. Querem mesmo começar de novo?", "This deletes this team’s progress. Do you really want to start again?"],
+  yes: ["Sim, começar de novo", "Yes, start again"],
+  no: ["Não, voltar", "No, go back"],
+  howTitle: ["Como jogar", "How to play"],
+  how: [
+    ["Escolham o nível da equipa.", "Choose your team’s level."],
+    ["Entrem em cada sala e resolvam os desafios digitais.", "Enter each room and solve the digital puzzles."],
+    ["Ganhem uma letra por sala e façam a missão na sala de aula.", "Earn one letter per room and do the classroom mission."],
+    ["Ordenem as 7 letras para abrir a porta de saída.", "Put the 7 letters in order to open the exit door."]
+  ],
+  map: ["Mapa do laboratório", "Lab map"],
+  mapLead: ["Reparem as salas por ordem. Cada sala reparada dá-vos uma letra do código.", "Repair the rooms in order. Each repaired room gives you one letter of the code."],
+  room: ["Sala", "Room"],
+  of: ["de", "of"],
+  session: ["Sessão", "Session"],
+  locked: ["Bloqueada", "Locked"],
+  open: ["Por reparar", "To repair"],
+  solved: ["Reparada", "Repaired"],
+  door: ["Porta de saída", "Exit door"],
+  doorLocked: ["Reparem as 7 salas", "Repair all 7 rooms"],
+  tabPuzzle: ["Desafio digital", "Digital challenge"],
+  tabMission: ["Missão na sala", "Classroom mission"],
+  youLearn: ["Vão aprender", "You will learn"],
+  check: ["Verificar", "Check"],
+  hint: ["Pista", "Hint"],
+  reset: ["Recomeçar", "Start again"],
+  next: ["Seguinte", "Next"],
+  puzzle: ["Desafio", "Puzzle"],
+  listen: ["Ouvir", "Listen"],
+  stop: ["Parar", "Stop"],
+  tryAgain: ["Quase! Revejam e tentem outra vez.", "Nearly! Look again and try once more."],
+  notFinished: ["Ainda faltam peças. Completem tudo antes de verificar.", "Some pieces are still missing. Complete everything before checking."],
+  orderHelp: ["Toquem nos cartões pela ordem certa. Para tirar um cartão, toquem nele outra vez.", "Tap the cards in the right order. To remove a card, tap it again."],
+  orderGreen: ["Os cartões a verde já estão no sítio certo.", "The green cards are already in the right place."],
+  matchHelp: ["Toquem num cartão da esquerda e depois no par certo da direita.", "Tap a card on the left, then its partner on the right."],
+  matchWrong: ["Os pares a vermelho estão trocados. Toquem neles para os desfazer.", "The red pairs are mixed up. Tap them to undo them."],
+  sortHelp: ["Para cada cartão, escolham o grupo certo.", "For each card, choose the right group."],
+  sortWrong: ["Os cartões a vermelho estão no grupo errado.", "The red cards are in the wrong group."],
+  choiceHelp: ["Escolham uma resposta.", "Choose one answer."],
+  multiHelp: ["Escolham todas as respostas certas.", "Choose all the correct answers."],
+  spotHelp: ["Toquem nos elementos da cena que têm problemas.", "Tap the parts of the scene that have problems."],
+  found: ["Problemas encontrados", "Problems found"],
+  reflectHelp: ["Não há respostas erradas. Escrevam o que pensam.", "There are no wrong answers. Write what you think."],
+  reflectEmpty: ["Escrevam pelo menos uma frase curta em cada caixa.", "Write at least one short sentence in each box."],
+  roomDone: ["Sala reparada!", "Room repaired!"],
+  letterWon: ["Ganharam a letra", "You earned the letter"],
+  debrief: ["Debriefing", "Debriefing"],
+  dWhat: ["O que aconteceu?", "What happened?"],
+  dWhy: ["Porquê?", "Why?"],
+  dNext: ["E para a próxima?", "Next time?"],
+  didYouKnow: ["Sabiam que…", "Did you know?"],
+  toMap: ["Voltar ao mapa", "Back to the map"],
+  nextRoom: ["Próxima sala", "Next room"],
+  goDoor: ["Ir para a porta de saída", "Go to the exit door"],
+  seeMission: ["Ver a missão na sala", "See the classroom mission"],
+  missionLead: ["Depois do desafio digital, a equipa continua o trabalho na sala de aula. O vosso nível está em destaque.", "After the digital challenge, your team carries on working in the classroom. Your level is highlighted."],
+  yourLevel: ["O vosso nível", "Your level"],
+  materials: ["Materiais", "Materials"],
+  deliver: ["Para entregar", "Hand in"],
+  steps: ["Passos", "Steps"],
+  roles: ["Papéis da equipa: Responsável pela história · Construtor/a · Testador/a e dados. Troquem de papel em cada sessão.", "Team roles: Story Lead · Builder · Tester / Data Lead. Swap roles every session."],
+  backPuzzle: ["Voltar ao desafio digital", "Back to the digital challenge"],
+  doorTitle: ["A porta de saída", "The exit door"],
+  doorLead: ["Ordenem as 7 letras para formar a qualidade mais importante de um/a Especialista XR em Saúde.", "Put the 7 letters in order to spell the most important quality of an XR Health Specialist."],
+  doorHint: ["É a capacidade de nos pormos no lugar do outro e perceber o que sente.", "It is the ability to put yourself in someone else’s shoes and understand how they feel."],
+  doorOpen: ["Abrir a porta", "Open the door"],
+  doorWrong: ["A porta não abriu. Experimentem outra ordem.", "The door didn’t open. Try another order."],
+  clear: ["Limpar", "Clear"],
+  doorNeed: ["Ainda faltam salas por reparar.", "Some rooms still need repairing."],
+  certEyebrow: ["Certificado", "Certificate"],
+  certTitle: ["Designers Júnior de Saúde XR", "Junior XR Health Designers"],
+  certText: ["reparou as 7 salas do Laboratório XR e abriu a porta com a palavra", "repaired the 7 rooms of the XR Lab and opened the door with the word"],
+  ourTeam: ["A equipa", "Team"],
+  noTeam: ["A nossa equipa", "Our team"],
+  starsLabel: ["Estrelas", "Stars"],
+  timeLabel: ["Tempo", "Time"],
+  levelWord: ["Nível", "Level"],
+  dateLabel: ["Data", "Date"],
+  certTip: ["Tirem uma captura de ecrã para guardar o certificado.", "Take a screenshot to keep your certificate."],
+  learnt: ["O que pensámos", "What we thought"],
+  playAgain: ["Jogar outra vez", "Play again"],
+  teacher: ["Guia do professor", "Teacher guide"],
+  settings: ["Adaptações", "Adaptations"],
+  bigText: ["Letra maior", "Larger text"],
+  contrast: ["Alto contraste", "High contrast"],
+  settingsNote: ["Este jogo também tem adaptações, tal como as cenas que vão criar. O botão Ouvir lê as instruções em voz alta.", "This game has adaptations too, just like the scenes you will create. The Listen button reads the instructions aloud."],
+  close: ["Fechar", "Close"],
+  home: ["Início", "Home"],
+  letters: ["Letras do código", "Code letters"],
+  stars3: ["3 estrelas: à primeira e sem pistas.", "3 stars: first try and no hints."],
+  hintCost: ["Usar uma pista tira uma estrela a esta sala.", "Using a hint takes one star from this room."],
+  goodLuck: ["Boa sorte, equipa!", "Good luck, team!"],
+  lang: ["Idioma", "Language"],
+  seeLetter: ["Ver a letra ganha", "See your letter"],
+  levelLocked: ["Para mudar de nível, carreguem em “Começar de novo”.", "To change level, press “Start again”."]
+};
+
+const SESSIONS = [
+  { title: ["O que faz uma cena de RV ensinar?", "What Makes a VR Scene Teach?"], min: 45 },
+  { title: ["Definir o desafio e o perfil profissional", "Define the Challenge and the Career Profile"], min: 45 },
+  { title: ["Storyboard, tarefas e dados STEAM", "Storyboard, Tasks and STEAM Data"], min: 90 },
+  { title: ["Construir o cenário de RV no FrameVR.io", "Build the VR Scenario in FrameVR.io"], min: 90 },
+  { title: ["Diferenciação e inclusão: o Menu de Aprendizagem", "Differentiation and Inclusion: the Learning Menu"], min: 45 },
+  { title: ["Testar com colegas, validar e melhorar", "Peer Testing, Validation and Improvement"], min: 45 },
+  { title: ["Apresentação final e reflexão sobre a profissão", "Final Presentation and Career Reflection"], min: 45 }
+];
+
+const WORD = ["EMPATIA", "EMPATHY"];
+
+/* lv: undefined = both levels, "s" = Specialists (10–12) only, "e" = Explorers (8–9) only */
+const ROOMS = [
+  /* ---------- ROOM 1 ---------- */
+  {
+    title: ["Laboratório XR", "The XR Lab"], letter: ["E", "E"],
+    intro: ["O ecrã principal do laboratório está apagado. Para o ligar, mostrem que sabem o que faz uma cena de realidade virtual ensinar alguma coisa.", "The lab’s main screen is dark. To switch it on, show that you know what makes a virtual reality scene teach something."],
+    goal: ["os 4 elementos de uma cena que ensina e o que faz um/a Especialista XR em Saúde.", "the 4 elements of a teaching scene and what an XR Health Specialist does."],
+    puzzles: [
+      { type: "order",
+        prompt: ["Ponham os 4 elementos de uma cena que ensina pela ordem certa.", "Put the 4 elements of a teaching scene in the right order."],
+        items: [
+          { t: ["Tarefa — um objetivo claro", "Task — a clear goal"] },
+          { t: ["Decisão — uma escolha com consequências", "Decision point — a choice with consequences"] },
+          { t: ["Feedback — o resultado imediato", "Feedback — the immediate result"] },
+          { t: ["Debriefing — pensar no que aconteceu e porquê", "Debriefing — thinking about what happened and why"] }
+        ],
+        hint: ["Primeiro sabes o que tens de fazer. No fim, pensas no que aprendeste.", "First you know what you must do. At the end, you think about what you learnt."],
+        success: ["Isso mesmo: Tarefa → Decisão → Feedback → Debriefing. Todas as cenas que ensinam seguem esta cadeia.", "That’s it: Task → Decision → Feedback → Debriefing. Every teaching scene follows this chain."] },
+      { type: "multi",
+        prompt: ["O que faz um/a Especialista em Formação e Mentoria XR em Saúde?", "What does an XR Health Training & Mentoring Specialist do?"],
+        options: [
+          { t: ["Cria mundos virtuais para enfermeiros e médicos treinarem", "Creates virtual worlds where nurses and doctors can practise"], ok: true },
+          { t: ["Opera doentes no bloco operatório", "Operates on patients in the operating theatre"] },
+          { t: ["Ajuda as pessoas a pensar no que aprenderam depois do treino", "Helps people think about what they learnt after training"], ok: true },
+          { t: ["Vende óculos de realidade virtual numa loja", "Sells virtual reality headsets in a shop"] },
+          { t: ["Usa os dados do treino para perceber o que melhorar", "Uses training data to see what to improve"], ok: true, lv: "s" },
+          { t: ["Faz jogos só para divertir, sem ensinar nada", "Makes games just for fun, without teaching anything"], lv: "s" }
+        ],
+        hint: ["Esta pessoa não trata doentes: ajuda quem trata doentes a aprender.", "This person doesn’t treat patients: they help the people who treat patients to learn."],
+        success: ["Certo! Esta profissão junta saúde, tecnologia e ensino.", "Correct! This job brings together health, technology and teaching."] },
+      { type: "choice", lv: "s",
+        prompt: ["Porque é que enfermeiros e paramédicos treinam em realidade virtual?", "Why do nurses and paramedics practise in virtual reality?"],
+        options: [
+          { t: ["Porque é mais rápido do que estudar", "Because it is quicker than studying"], fb: ["Treinar em RV também dá trabalho! Pensem no que acontece quando alguém erra.", "Practising in VR is hard work too! Think about what happens when someone makes a mistake."] },
+          { t: ["Para poderem errar em segurança e aprender sem magoar ninguém", "So they can make mistakes safely and learn without hurting anyone"], ok: true },
+          { t: ["Para não terem de falar com os doentes", "So they don’t have to talk to patients"], fb: ["Pelo contrário: muitos treinos em RV servem para aprender a falar com os doentes com empatia.", "Quite the opposite: much VR training helps people learn to talk to patients with empathy."] }
+        ],
+        hint: ["Pensem no que acontece quando alguém erra num hospital a sério.", "Think about what happens when someone makes a mistake in a real hospital."],
+        success: ["Exatamente: no mundo virtual, um erro é uma oportunidade para aprender.", "Exactly: in a virtual world, a mistake is a chance to learn."] }
+    ],
+    debrief: {
+      what: ["Ligaram o ecrã ao ordenar os 4 elementos e ao descobrir o que faz esta profissão.", "You switched on the screen by ordering the 4 elements and finding out what this job involves."],
+      why: ["Sem tarefa, decisão, feedback e debriefing, uma cena é só um passeio virtual: não ensina.", "Without a task, a decision, feedback and a debriefing, a scene is just a virtual walk: it doesn’t teach."],
+      next: ["Quando construírem a vossa cena, verifiquem se tem os 4 elementos.", "When you build your own scene, check that it has all 4 elements."] },
+    fact: ["Há hospitais e escolas de enfermagem que usam a realidade virtual para treinar emergências raras sem pôr ninguém em risco.", "Some hospitals and nursing schools use virtual reality to practise rare emergencies without putting anyone at risk."],
+    mission: {
+      e: { title: ["A nossa primeira cena", "Our first scene"], min: 20,
+        materials: ["Tablet ou computador, conta FrameVR.io da turma, Worksheet 1", "Tablet or computer, class FrameVR.io account, Worksheet 1"],
+        steps: [
+          ["Escolham o tema: lavar as mãos ou atravessar a rua.", "Choose a topic: washing hands or crossing the road."],
+          ["No FrameVR.io, escolham um fundo para a cena.", "In FrameVR.io, choose a background for the scene."],
+          ["Coloquem 1 hotspot com uma instrução curta.", "Add 1 hotspot with a short instruction."],
+          ["Criem 1 decisão com 2 opções e escrevam o feedback de cada opção.", "Create 1 decision with 2 options and write the feedback for each option."]
+        ],
+        deliver: ["Worksheet 1 — secções 4 e 5", "Worksheet 1 — sections 4 and 5"] },
+      s: { title: ["Micro-protótipo e verificação", "Micro-prototype and check"], min: 25,
+        materials: ["Tablet ou computador, conta FrameVR.io da turma, Worksheet 1", "Tablet or computer, class FrameVR.io account, Worksheet 1"],
+        steps: [
+          ["Construam a mesma micro-cena com 1 hotspot e 1 decisão.", "Build the same micro-scene with 1 hotspot and 1 decision."],
+          ["Escrevam um feedback para a opção insegura que explique PORQUÊ é perigosa.", "Write feedback for the unsafe option that explains WHY it is dangerous."],
+          ["Troquem de cena com outra equipa e testem-na.", "Swap scenes with another team and test it."],
+          ["Avaliem as duas cenas com a checklist (1 a 3): é clara? É consistente? Não tem demasiadas coisas? Todos a conseguem usar?", "Score both scenes with the checklist (1 to 3): is it clear? Is it consistent? Is it not too much at once? Can everyone use it?"]
+        ],
+        deliver: ["Worksheet 1 — secções 4, 5, 6 e Desafio", "Worksheet 1 — sections 4, 5, 6 and Challenge"] }
+    }
+  },
+  /* ---------- ROOM 2 ---------- */
+  {
+    title: ["Sala da Missão", "Mission Room"], letter: ["M", "M"],
+    intro: ["O painel da missão está baralhado. Escolham um tema de saúde e provem que o plano segue as regras da missão.", "The mission panel is scrambled. Choose a health topic and prove that the plan follows the mission rules."],
+    goal: ["a escolher um tema de saúde e a planear decisões apoiadas em regras reais.", "to choose a health topic and plan decisions backed by real rules."],
+    puzzles: [
+      { type: "match",
+        prompt: ["Liguem cada tema de saúde ao exemplo da vida real.", "Match each health topic to its real-life example."],
+        pairs: [
+          { a: ["Higiene e prevenção", "Hygiene and prevention"], b: ["Micróbios nas mãos antes do lanche", "Germs on our hands before lunch"] },
+          { a: ["Prevenção de acidentes", "Accident prevention"], b: ["Correr num chão molhado", "Running on a wet floor"] },
+          { a: ["Primeiros socorros e pedir ajuda", "First aid and asking for help"], b: ["Um amigo cortou o joelho. A quem pedes ajuda?", "A friend has cut their knee. Who do you ask for help?"] },
+          { a: ["Visita ao hospital", "Hospital visit"], b: ["Uma criança vai às urgências depois de uma queda", "A child goes to A&E after a fall"], lv: "s" },
+          { a: ["Bem-estar emocional e digital", "Emotional and digital well-being"], b: ["Uma mensagem maldosa online", "An unkind message online"], lv: "s" }
+        ],
+        hint: ["Leiam o exemplo e perguntem: isto é sobre micróbios, acidentes ou ajuda?", "Read the example and ask: is it about germs, accidents or help?"],
+        success: ["Muito bem! Cada tema tem situações reais que as crianças conhecem.", "Well done! Every topic has real situations that children know."] },
+      { type: "choice",
+        prompt: ["Qual destes planos de missão segue TODAS as regras?", "Which mission plan follows ALL the rules?"],
+        rules: ["Regras: público dos 8 aos 12 anos · 3 a 5 tarefas · pelo menos 2 decisões · cada decisão segue uma regra real", "Rules: audience aged 8–12 · 3 to 5 tasks · at least 2 decisions · every decision follows a real rule"],
+        options: [
+          { t: ["Plano B — crianças dos 8 aos 12 anos · 1 tarefa · 1 decisão · regra da DGS", "Plan B — children aged 8–12 · 1 task · 1 decision · rule from the NHS"], fb: ["Só tem 1 tarefa e 1 decisão. Precisa de 3 a 5 tarefas e de 2 decisões.", "It only has 1 task and 1 decision. It needs 3 to 5 tasks and 2 decisions."] },
+          { t: ["Plano A — crianças dos 8 aos 12 anos · 4 tarefas · 2 decisões · regras da DGS e da OMS", "Plan A — children aged 8–12 · 4 tasks · 2 decisions · rules from the NHS and the WHO"], ok: true },
+          { t: ["Plano C — crianças dos 8 aos 12 anos · 4 tarefas · 2 decisões · regras inventadas pela equipa", "Plan C — children aged 8–12 · 4 tasks · 2 decisions · rules made up by the team"], lv: "s", fb: ["As regras têm de vir de fontes reais. Não podem ser inventadas.", "The rules must come from real sources. They can’t be made up."] },
+          { t: ["Plano D — adultos · 3 tarefas · 2 decisões · regras da OMS", "Plan D — adults · 3 tasks · 2 decisions · rules from the WHO"], lv: "s", fb: ["O público tem de ser crianças dos 8 aos 12 anos.", "The audience must be children aged 8–12."] }
+        ],
+        hint: ["Verifiquem as regras uma a uma, como numa checklist.", "Check the rules one by one, like a checklist."],
+        success: ["Certo! O Plano A cumpre as 4 regras da missão.", "Correct! Plan A meets all 4 mission rules."] },
+      { type: "choice",
+        prompt: ["Cada decisão precisa de uma regra real. Qual é a fonte mais fiável?", "Every decision needs a real rule. Which source is the most reliable?"],
+        options: [
+          { t: ["Um vídeo que se tornou viral", "A video that went viral"], fb: ["Um vídeo pode ser popular e estar errado.", "A video can be popular and still be wrong."] },
+          { t: ["O que um amigo ouviu dizer", "Something a friend heard"], fb: ["Ouvir dizer não é uma prova.", "Hearsay is not evidence."] },
+          { t: ["A Direção-Geral da Saúde (DGS) ou a Organização Mundial da Saúde (OMS)", "The NHS or the World Health Organization (WHO)"], ok: true },
+          { t: ["Um anúncio de sabonete", "A soap advert"], lv: "s", fb: ["Um anúncio quer vender alguma coisa.", "An advert wants to sell you something."] }
+        ],
+        hint: ["Uma fonte fiável é escrita por especialistas em saúde.", "A reliable source is written by health experts."],
+        success: ["Isso! Os especialistas em saúde publicam regras testadas e verificadas.", "Yes! Health experts publish rules that have been tested and checked."] }
+    ],
+    debrief: {
+      what: ["Escolheram um tema e encontraram o plano que cumpre as regras.", "You chose a topic and found the plan that meets the rules."],
+      why: ["Uma cena de saúde só ensina bem se as decisões seguirem regras verdadeiras.", "A health scene only teaches well if its decisions follow true rules."],
+      next: ["No vosso plano, escrevam a regra e a fonte ao lado de cada decisão.", "In your plan, write the rule and its source next to each decision."] },
+    fact: ["Os especialistas XR em saúde trabalham com enfermeiros e médicos para garantir que cada passo do treino segue os protocolos reais.", "XR health specialists work with nurses and doctors to make sure every step of the training follows real protocols."],
+    mission: {
+      e: { title: ["Mercado dos temas", "Topic market"], min: 20,
+        materials: ["Cartões dos temas, post-its, Worksheet 2", "Topic cards, sticky notes, Worksheet 2"],
+        steps: [
+          ["Visitem os 5 cartões de temas e leiam os exemplos.", "Visit the 5 topic cards and read the examples."],
+          ["Votem no tema preferido com um post-it.", "Vote for your favourite topic with a sticky note."],
+          ["Completem a frase: “As crianças dos 8 aos 12 anos vão aprender a ___ para que ___.”", "Complete the sentence: “Children aged 8–12 will learn to ___ so that ___.”"],
+          ["Assinalem as 4 regras da missão.", "Tick the 4 mission rules."]
+        ],
+        deliver: ["Worksheet 2 — secções 1 a 4", "Worksheet 2 — sections 1 to 4"] },
+      s: { title: ["Plano da Missão", "Mission Plan"], min: 30,
+        materials: ["Pack de evidências (DGS, OMS, UNICEF, NHS), Worksheet 2", "Evidence pack (NHS, WHO, UNICEF, DGS), Worksheet 2"],
+        steps: [
+          ["Escrevam o cenário, a personagem principal e 3 a 5 tarefas.", "Write the setting, the main character and 3 to 5 tasks."],
+          ["Planeiem 2 decisões: escolha segura, escolha insegura, regra real e fonte.", "Plan 2 decisions: safe choice, unsafe choice, real rule and source."],
+          ["Escrevam os critérios de sucesso: “Uma criança tem sucesso quando…”", "Write the success criteria: “A child succeeds when…”"],
+          ["Façam uma visita de galeria: deixem um “Gosto…” e um “Pergunto-me…” a outra equipa.", "Do a gallery walk: leave an “I like…” and an “I wonder…” for another team."]
+        ],
+        deliver: ["Worksheet 2 — secções 5 a 9", "Worksheet 2 — sections 5 to 9"] }
+    }
+  },
+  /* ---------- ROOM 3 ---------- */
+  {
+    title: ["Estúdio do Storyboard", "Storyboard Studio"], letter: ["P", "P"],
+    intro: ["As vinhetas da história caíram ao chão e os balões de feedback estão trocados. Arrumem a história!", "The story frames have fallen on the floor and the feedback bubbles are mixed up. Put the story back together!"],
+    goal: ["a organizar uma história em vinhetas, a escrever bom feedback e a usar uma escala de risco.", "to organise a story in frames, write good feedback and use a risk scale."],
+    puzzles: [
+      { type: "order",
+        prompt: ["Ponham as vinhetas do storyboard pela ordem certa.", "Put the storyboard frames in the right order."],
+        items: [
+          { t: ["Início: a Rita chega à cantina para almoçar", "Start: Rita arrives at the canteen for lunch"] },
+          { t: ["Tarefa: encontrar o lavatório", "Task: find the sink"], lv: "s" },
+          { t: ["Decisão: lavar as mãos ou ir já comer?", "Decision: wash hands or go straight to eat?"] },
+          { t: ["Feedback: “Boa! Lavar as mãos durante 20 segundos tira os micróbios.”", "Feedback: “Well done! Washing for 20 seconds removes germs.”"] },
+          { t: ["Fim: o que aconteceu? Porquê? E para a próxima?", "End: what happened? Why? What next time?"] }
+        ],
+        hint: ["Uma história começa no início e acaba com o debriefing.", "A story starts at the start and ends with the debriefing."],
+        success: ["Perfeito! Um storyboard mostra cada cena por ordem, com setas para as escolhas.", "Perfect! A storyboard shows each scene in order, with arrows for the choices."] },
+      { type: "sort",
+        prompt: ["Que feedback ajuda? Um bom feedback é curto, simpático e diz porquê.", "Which feedback helps? Good feedback is short, kind and says why."],
+        bins: [["Ajuda", "Helps"], ["Não ajuda", "Doesn’t help"]],
+        items: [
+          { t: ["“Boa! Lavar as mãos 20 segundos tira os micróbios.”", "“Well done! Washing for 20 seconds removes germs.”"], bin: 0 },
+          { t: ["“Errado.”", "“Wrong.”"], bin: 1 },
+          { t: ["“Cuidado: o chão molhado escorrega. Anda devagar.”", "“Careful: wet floors are slippery. Walk slowly.”"], bin: 0 },
+          { t: ["“Que disparate! Tenta outra vez!!!”", "“That’s silly! Try again!!!”"], bin: 1 },
+          { t: ["“Muito bem.”", "“Good.”"], bin: 1, lv: "s" },
+          { t: ["“Quase! Pedir ajuda a um adulto é mais seguro, porque ele sabe o que fazer.”", "“Nearly! Asking an adult for help is safer, because they know what to do.”"], bin: 0, lv: "s" }
+        ],
+        hint: ["Procurem uma razão, como a palavra “porque”. O feedback também tem de ser simpático.", "Look for a reason, like the word “because”. Feedback should be kind too."],
+        success: ["Certo! Um feedback curto, simpático e com uma razão ajuda a aprender.", "Correct! Short, kind feedback with a reason helps you learn."] },
+      { type: "order", slotLabels: [["Mais segura", "Safest"], ["Mais arriscada", "Riskiest"]],
+        prompt: ["Escala de risco: ordenem da escolha MAIS segura para a MAIS arriscada.", "Risk scale: order from the SAFEST choice to the RISKIEST."],
+        items: [
+          { t: ["Lavar as mãos com água e sabão durante 20 segundos", "Wash hands with soap and water for 20 seconds"] },
+          { t: ["Passar as mãos só por água, à pressa", "Quickly rinse hands with water only"] },
+          { t: ["Comer sem lavar as mãos depois de brincar na terra", "Eat without washing after playing in the mud"] }
+        ],
+        hint: ["Qual é a escolha que tira mais micróbios? E qual não tira nenhum?", "Which choice removes the most germs? Which removes none?"],
+        success: ["Muito bem! Uma escala de risco (1 = muito seguro, 5 = muito arriscado) ajuda a comparar escolhas com dados.", "Well done! A risk scale (1 = very safe, 5 = very risky) helps you compare choices using data."] },
+      { type: "match", lv: "s",
+        prompt: ["Liguem cada letra STEAM ao que a vossa cena deve ter.", "Match each STEAM letter to what your scene must include."],
+        pairs: [
+          { a: ["S — Ciência", "S — Science"], b: ["Ideias sobre o corpo e a saúde (micróbios, emoções)", "Ideas about the body and health (germs, emotions)"] },
+          { a: ["T — Tecnologia", "T — Technology"], b: ["A construção no FrameVR.io", "The FrameVR.io build"] },
+          { a: ["E — Engenharia e design", "E — Engineering and design"], b: ["Testar e melhorar o design", "Testing and improving the design"] },
+          { a: ["A — Artes e comunicação", "A — Arts and communication"], b: ["História, ícones e palavras simples", "Story, icons and plain words"] },
+          { a: ["M — Matemática e dados", "M — Maths and data"], b: ["Uma tabela, um gráfico ou uma escala de risco", "A table, a graph or a risk scale"] }
+        ],
+        hint: ["T de Tecnologia é a parte do computador. M de Matemática tem números.", "T for Technology is the computer part. M for Maths has numbers."],
+        success: ["Excelente! A vossa cena usa as 5 áreas STEAM.", "Excellent! Your scene uses all 5 STEAM areas."] }
+    ],
+    debrief: {
+      what: ["Puseram a história por ordem, escolheram o feedback que ajuda e compararam riscos.", "You put the story in order, chose the feedback that helps and compared risks."],
+      why: ["Planear em papel poupa tempo: é mais fácil mudar um desenho do que uma cena já construída.", "Planning on paper saves time: it is easier to change a drawing than a finished scene."],
+      next: ["Antes de construir, verifiquem se cada decisão tem duas setas e um feedback para cada uma.", "Before you build, check that every decision has two arrows and feedback for each one."] },
+    fact: ["Antes de construir, os designers de experiências imersivas desenham storyboards, tal como os realizadores de cinema.", "Before they start building, immersive experience designers draw storyboards, just like film directors."],
+    mission: {
+      e: { title: ["Mapa de cenas em vinhetas", "Scene map in frames"], min: 30,
+        materials: ["Folhas de storyboard A3, lápis de cor, Worksheet 3", "A3 storyboard sheets, coloured pencils, Worksheet 3"],
+        steps: [
+          ["Escrevam a história em palavras: onde, quem, o que corre mal e o final seguro.", "Write the story in words: where, who, what goes wrong and the safe ending."],
+          ["Desenhem uma vinheta para cada cena e numerem-nas.", "Draw one frame for each scene and number them."],
+          ["Desenhem setas para cada escolha.", "Draw arrows for every choice."],
+          ["Escrevam o feedback para a escolha segura e para a insegura.", "Write the feedback for the safe choice and for the unsafe choice."]
+        ],
+        deliver: ["Worksheet 3 — secções 1 a 5", "Worksheet 3 — sections 1 to 5"] },
+      s: { title: ["Storyboard e dados STEAM", "Storyboard and STEAM data"], min: 45,
+        materials: ["Folhas de storyboard A3, papel quadriculado, Worksheet 3", "A3 storyboard sheets, squared paper, Worksheet 3"],
+        steps: [
+          ["Desenhem o mapa de cenas com 3 a 5 tarefas e 2 decisões, com duas setas em cada decisão.", "Draw the scene map with 3 to 5 tasks and 2 decisions, with two arrows at each decision."],
+          ["Escrevam 4 frases de feedback (segura e insegura em cada decisão) e a pergunta de debriefing.", "Write 4 feedback lines (safe and unsafe for each decision) and the debriefing question."],
+          ["Preencham a checklist STEAM.", "Complete the STEAM checklist."],
+          ["Criem uma escala de risco (1 a 5) para cada escolha ou um gráfico de contagem.", "Create a risk scale (1 to 5) for each choice, or a tally chart."]
+        ],
+        deliver: ["Worksheet 3 — secções 1 a 11", "Worksheet 3 — sections 1 to 11"] }
+    }
+  },
+  /* ---------- ROOM 4 ---------- */
+  {
+    title: ["Oficina de Construção", "Build Workshop"], letter: ["A", "A"],
+    intro: ["A cena de treino está avariada: as decisões perderam as ligações e há erros que impedem algumas crianças de jogar. Reparem-na!", "The training scene is broken: the decisions have lost their links and there are mistakes that stop some children from playing. Fix it!"],
+    goal: ["a ligar cada decisão ao feedback certo e a fazer uma revisão de acessibilidade.", "to link each decision to the right feedback and do an accessibility check."],
+    puzzles: [
+      { type: "match",
+        prompt: ["Situação: um amigo caiu e magoou o joelho. Liguem cada opção ao feedback certo.", "Situation: a friend has fallen and hurt their knee. Link each option to the right feedback."],
+        pairs: [
+          { a: ["Chamar um adulto", "Call an adult"], b: ["“Boa! Um adulto sabe ajudar e liga para o 112 se for preciso.”", "“Well done! An adult knows how to help and will call 112 if needed.”"] },
+          { a: ["Mexer na ferida com as mãos sujas", "Touch the cut with dirty hands"], b: ["“Cuidado! As mãos sujas levam micróbios para a ferida.”", "“Careful! Dirty hands carry germs into the cut.”"] },
+          { a: ["Ignorar e continuar a brincar", "Ignore it and keep playing"], b: ["“Pensa outra vez: o teu amigo precisa de ajuda.”", "“Think again: your friend needs help.”"] },
+          { a: ["Lavar a ferida com água limpa, com um adulto", "Clean the cut with clean water, with an adult"], b: ["“Muito bem: a água limpa ajuda a limpar a ferida.”", "“Well done: clean water helps to clean the cut.”"], lv: "s" }
+        ],
+        hint: ["Cada feedback fala da opção que lhe corresponde. Procurem palavras iguais.", "Each piece of feedback talks about its own option. Look for matching words."],
+        success: ["Ligações reparadas! Cada escolha mostra agora o feedback certo.", "Links repaired! Each choice now shows the right feedback."] },
+      { type: "spot",
+        prompt: ["Revisão de acessibilidade: encontrem os problemas nesta cena.", "Accessibility check: find the problems in this scene."],
+        hint: ["Imaginem uma criança que lê devagar, outra que vê mal e outra que não ouve bem.", "Imagine a child who reads slowly, one who can’t see well and one who can’t hear well."],
+        success: ["Revisão feita! Palavras simples, legendas nas imagens e bom contraste ajudam todos a jogar.", "Check complete! Plain words, labels on pictures and good contrast help everyone play."] },
+      { type: "choice",
+        prompt: ["Publicaram a versão 1 da cena. O que fazem a seguir?", "You have published version 1 of the scene. What do you do next?"],
+        options: [
+          { t: ["Apagamos tudo e começamos do zero", "Delete everything and start from scratch"], fb: ["Não é preciso! Primeiro vejam se funciona.", "No need! First check whether it works."] },
+          { t: ["Não mostramos a ninguém", "Don’t show it to anyone"], fb: ["Uma cena serve para ser usada. Mostrem-na e testem-na.", "A scene is made to be used. Show it and test it."] },
+          { t: ["Copiamos o código de partilha e um colega abre a cena noutro dispositivo", "Copy the share code and ask a teammate to open the scene on another device"], ok: true }
+        ],
+        hint: ["Como sabem se a cena funciona fora do vosso ecrã?", "How do you know the scene works outside your own screen?"],
+        success: ["Certo! Abrir a cena noutro dispositivo mostra se funciona para todos.", "Correct! Opening the scene on another device shows whether it works for everyone."] }
+    ],
+    debrief: {
+      what: ["Ligaram cada opção ao feedback certo e corrigiram problemas de acessibilidade.", "You linked each option to the right feedback and fixed accessibility problems."],
+      why: ["Uma cena só ensina se as ligações funcionarem e se todas as crianças a conseguirem usar.", "A scene only teaches if the links work and every child can use it."],
+      next: ["Antes de publicar, revejam as 4 regras: palavras simples, as mesmas cores e ícones, legendas nas imagens e a indicação “Seguinte”.", "Before publishing, check the 4 rules: plain words, the same colours and icons, labels on pictures and a “Next” cue."] },
+    fact: ["Nos simuladores de saúde, cada escolha leva a uma consequência diferente, tal como na vossa cena com ramos.", "In health simulators, every choice leads to a different consequence, just like in your branching scene."],
+    mission: {
+      e: { title: ["Construir as tarefas", "Build the tasks"], min: 40,
+        materials: ["Tablet ou computador, FrameVR.io, storyboard da sessão 3, Worksheet 4", "Tablet or computer, FrameVR.io, storyboard from session 3, Worksheet 4"],
+        steps: [
+          ["Construtor/a: criem as cenas e os hotspots das tarefas.", "Builder: create the scenes and the task hotspots."],
+          ["Responsável pela história: escrevam instruções com 10 palavras ou menos e um ícone para cada tarefa.", "Story Lead: write instructions of 10 words or fewer and an icon for each task."],
+          ["Escrevam o glossário com 3 palavras de saúde explicadas para crianças.", "Write a glossary of 3 health words explained for children."],
+          ["Ponto de situação de 20 segundos: Feito · Encravado · A seguir.", "20-second stand-up: Done · Stuck · Next."]
+        ],
+        deliver: ["Worksheet 4 — secções 1 a 6", "Worksheet 4 — sections 1 to 6"] },
+      s: { title: ["Decisões, acessibilidade e versão 1", "Decisions, accessibility and version 1"], min: 45,
+        materials: ["Tablet ou computador, FrameVR.io, storyboard da sessão 3, Worksheet 4", "Tablet or computer, FrameVR.io, storyboard from session 3, Worksheet 4"],
+        steps: [
+          ["Construam as 2 decisões, ligando cada opção ao seu feedback.", "Build the 2 decisions, linking each option to its feedback."],
+          ["Acrescentem o debriefing final: o que aconteceu, porquê e para a próxima.", "Add the final debriefing: what happened, why and next time."],
+          ["Façam a revisão das 4 regras de acessibilidade.", "Check the 4 accessibility rules."],
+          ["Publiquem a versão 1 e registem o código de partilha. Extra: um hotspot que conta as escolhas seguras.", "Publish version 1 and record the share code. Extra: a hotspot that counts the safe choices."]
+        ],
+        deliver: ["Worksheet 4 — secções 7 a 12", "Worksheet 4 — sections 7 to 12"] }
+    }
+  },
+  /* ---------- ROOM 5 ---------- */
+  {
+    title: ["Todos Podem Jogar", "Everyone Can Play"], letter: ["T", "T"],
+    intro: ["Algumas crianças ainda não conseguem jogar a cena. Escolham as adaptações certas e organizem o Menu de Aprendizagem.", "Some children still can’t play the scene. Choose the right adaptations and organise the Learning Menu."],
+    goal: ["a adaptar uma cena para que todas as crianças a possam jogar.", "to adapt a scene so that every child can play it."],
+    puzzles: [
+      { type: "match",
+        prompt: ["Liguem cada necessidade à adaptação que ajuda.", "Match each need to the adaptation that helps."],
+        pairs: [
+          { a: ["Uma criança que lê devagar", "A child who reads slowly"], b: ["Palavras simples e frases curtas", "Plain words and short sentences"] },
+          { a: ["Uma criança que não ouve bem", "A child who can’t hear well"], b: ["Legendas", "Captions"] },
+          { a: ["Uma criança que vê mal as letras", "A child who struggles to see the letters"], b: ["Alto contraste", "High contrast"] },
+          { a: ["Uma criança que precisa de mais tempo para pensar", "A child who needs more time to think"], b: ["Mais tempo, sem cronómetro", "Extra time, no timer"], lv: "s" },
+          { a: ["Uma criança que ainda não lê sozinha", "A child who can’t read on their own yet"], b: ["Áudio: instruções lidas em voz alta", "Audio: instructions read aloud"], lv: "s" }
+        ],
+        hint: ["Pensem no que cada criança precisa: tempo, som, visão ou leitura?", "Think about what each child needs: time, sound, sight or reading?"],
+        success: ["Muito bem! A adaptação certa abre a cena a mais crianças.", "Well done! The right adaptation opens the scene to more children."] },
+      { type: "choice",
+        prompt: ["Qual é a versão em palavras simples desta instrução?", "Which is the plain-language version of this instruction?"],
+        quote: ["“Previamente ao consumo de alimentos, é imprescindível proceder a uma higienização minuciosa das mãos.”", "“Prior to the consumption of food, it is essential to perform thorough hand hygiene.”"],
+        options: [
+          { t: ["Antes da ingestão alimentar, procede à higiene manual.", "Before food intake, carry out manual hygiene."], fb: ["Continua difícil: “ingestão” e “manual” não são palavras do dia a dia.", "Still hard: “intake” and “manual” are not everyday words."] },
+          { t: ["Lava as mãos com água e sabão antes de comer.", "Wash your hands with soap and water before you eat."], ok: true },
+          { t: ["Mãos!", "Hands!"], fb: ["É curta demais: já não diz o que fazer.", "It’s too short: it no longer says what to do."] },
+          { t: ["É imprescindível higienizar previamente as mãos.", "It is essential to sanitise hands beforehand."], lv: "s", fb: ["Ainda tem palavras difíceis.", "It still has difficult words."] }
+        ],
+        hint: ["Palavras simples são as que usamos todos os dias. E a frase continua a dizer o que fazer.", "Plain words are the ones we use every day. And the sentence still says what to do."],
+        success: ["Isso! É curta, clara e diz exatamente o que fazer.", "Yes! It’s short, clear and says exactly what to do."] },
+      { type: "sort",
+        prompt: ["Organizem o Menu de Aprendizagem: em que percurso fica cada ideia?", "Organise the Learning Menu: which pathway does each idea belong to?"],
+        bins: [["Apoio", "Support"], ["Base", "Base"], ["Desafio", "Challenge"]],
+        items: [
+          { t: ["Menos cenas e pictogramas", "Fewer scenes and pictograms"], bin: 0 },
+          { t: ["O cenário completo", "The full scenario"], bin: 1 },
+          { t: ["Um ramo extra na história", "An extra branch in the story"], bin: 2 },
+          { t: ["Narração mais curta", "Shorter narration"], bin: 0, lv: "s" },
+          { t: ["2 decisões com feedback", "2 decisions with feedback"], bin: 1, lv: "s" },
+          { t: ["Um painel com a pontuação", "A score dashboard"], bin: 2, lv: "s" }
+        ],
+        hint: ["Apoio torna mais fácil, Base é a cena normal e Desafio acrescenta algo novo.", "Support makes it easier, Base is the normal scene and Challenge adds something new."],
+        success: ["Menu pronto! Cada criança escolhe o percurso que lhe serve.", "Menu ready! Every child can choose the pathway that suits them."] }
+    ],
+    debrief: {
+      what: ["Escolheram adaptações, simplificaram uma instrução e organizaram três percursos.", "You chose adaptations, simplified an instruction and organised three pathways."],
+      why: ["As pessoas aprendem de maneiras diferentes. Uma boa cena dá várias formas de ver, ouvir e responder.", "People learn in different ways. A good scene offers several ways to see, hear and answer."],
+      next: ["Joguem a vossa cena sem som e com letras maiores. Que informação se perde?", "Play your scene with the sound off and larger text. What information is lost?"] },
+    fact: ["Este jogo também tem adaptações: experimentem o botão Adaptações (letra maior e alto contraste) e o botão Ouvir.", "This game has adaptations too: try the Adaptations button (larger text and high contrast) and the Listen button."],
+    mission: {
+      e: { title: ["Uma instrução, três maneiras", "One instruction, three ways"], min: 20,
+        materials: ["Cartões de adaptação, lápis de cor, Worksheet 5", "Adaptation cards, coloured pencils, Worksheet 5"],
+        steps: [
+          ["Escrevam uma necessidade (não um nome) de uma criança que possa achar a cena difícil.", "Write a need (not a name) of a child who might find the scene hard."],
+          ["Reescrevam a instrução difícil em 10 palavras ou menos.", "Rewrite the difficult instruction in 10 words or fewer."],
+          ["Desenhem um pictograma para a instrução.", "Draw a pictogram for the instruction."],
+          ["Escolham 2 maneiras de responder ao debriefing: falar, desenhar, clicar ou mover um cartão.", "Choose 2 ways to answer the debriefing: speak, draw, click or move a card."]
+        ],
+        deliver: ["Worksheet 5 — secções 1, 2 e 6", "Worksheet 5 — sections 1, 2 and 6"] },
+      s: { title: ["Menu de Aprendizagem", "Learning Menu"], min: 30,
+        materials: ["Tablet ou computador, FrameVR.io, cartões de adaptação, Worksheet 5", "Tablet or computer, FrameVR.io, adaptation cards, Worksheet 5"],
+        steps: [
+          ["Acrescentem uma cena inicial com 3 botões: Apoio, Base e Desafio.", "Add a start frame with 3 buttons: Support, Base and Challenge."],
+          ["Construam a versão Apoio (menos cenas, pictogramas, narração curta).", "Build the Support version (fewer scenes, pictograms, short narration)."],
+          ["Apliquem as 2 adaptações dos cartões que receberam.", "Apply the 2 adaptations from the cards you received."],
+          ["Joguem a cena sem som: que informação se perde? Como a recuperam?", "Play the scene with the sound off: what information is lost? How can you get it back?"]
+        ],
+        deliver: ["Worksheet 5 — secções 3 a 10", "Worksheet 5 — sections 3 to 10"] }
+    }
+  },
+  /* ---------- ROOM 6 ---------- */
+  {
+    title: ["Laboratório de Testes", "Testing Lab"], letter: ["I", "H"],
+    intro: ["Chegaram os testadores! Sigam o ciclo de testar e melhorar e usem os dados para decidir o que mudar.", "The testers have arrived! Follow the test-and-improve cycle and use the data to decide what to change."],
+    goal: ["a testar uma cena, a observar sem ajudar e a melhorar com base em evidências.", "to test a scene, watch without helping and improve it using evidence."],
+    puzzles: [
+      { type: "order",
+        prompt: ["Ponham os passos do ciclo Testar e Melhorar pela ordem certa.", "Put the steps of the Test & Improve cycle in the right order."],
+        items: [
+          { t: ["Testar nas mesmas condições", "Test under the same conditions"] },
+          { t: ["Observar e registar na grelha", "Observe and record on the grid"] },
+          { t: ["Identificar o maior problema", "Identify the biggest problem"], lv: "s" },
+          { t: ["Explicar porquê (hipótese)", "Say why it happened (hypothesis)"], lv: "s" },
+          { t: ["Melhorar UMA coisa", "Improve ONE thing"] },
+          { t: ["Testar outra vez e publicar a v2", "Test again and publish v2"] }
+        ],
+        hint: ["Só se melhora depois de observar. E no fim testa-se outra vez.", "You only improve after observing. And at the end you test again."],
+        success: ["Ciclo completo! Testar, observar e melhorar uma coisa de cada vez.", "Cycle complete! Test, observe and improve one thing at a time."] },
+      { type: "choice",
+        prompt: ["O testador ficou encravado na decisão 1. O que faz o observador?", "The tester is stuck at decision 1. What does the observer do?"],
+        options: [
+          { t: ["Pega no tablet e resolve por ele", "Takes the tablet and solves it for them"], fb: ["Assim perde-se a evidência! A regra é: observar, não salvar.", "Then the evidence is lost! The rule is: watch, don’t rescue."] },
+          { t: ["Escreve na grelha o que viu, sem ajudar", "Writes what they saw on the grid, without helping"], ok: true },
+          { t: ["Diz-lhe a resposta ao ouvido", "Whispers the answer"], fb: ["Assim perde-se a evidência! A regra é: observar, não salvar.", "Then the evidence is lost! The rule is: watch, don’t rescue."] }
+        ],
+        hint: ["Se o testador fica encravado, isso é uma informação importante.", "If the tester gets stuck, that is important information."],
+        success: ["Certo! Observar sem salvar mostra onde a cena precisa de melhorar.", "Correct! Watching without rescuing shows where the scene needs to improve."] },
+      { type: "choice", table: true,
+        prompt: ["Vejam a grelha de validação. Qual é a UMA coisa que devem melhorar primeiro?", "Look at the validation grid. Which ONE thing should you improve first?"],
+        head: [["Verificação", "Check"], ["Testador 1", "Tester 1"], ["Testador 2", "Tester 2"], ["Testador 3", "Tester 3", "s"]],
+        rows: [
+          [["Navegação", "Navigation"], "✓", "✓", "✓"],
+          [["Tarefas", "Tasks"], "✓", "✓", "✗"],
+          [["Decisão 1", "Decision 1"], "✗", "✗", "✗"],
+          [["Decisão 2", "Decision 2"], "✓", "✗", "✓"],
+          [["Debriefing", "Debriefing"], "✓", "✓", "✓"]
+        ],
+        options: [
+          { t: ["Navegação", "Navigation"], fb: ["A navegação funcionou com todos: só há ✓.", "Navigation worked for everyone: there are only ✓."] },
+          { t: ["Tarefas", "Tasks"], lv: "s", fb: ["Só um testador teve problemas nas tarefas.", "Only one tester had problems with the tasks."] },
+          { t: ["Decisão 1", "Decision 1"], ok: true },
+          { t: ["Decisão 2", "Decision 2"], fb: ["Só um testador teve problemas aqui. Procurem a linha com mais ✗.", "Only one tester had problems here. Look for the row with the most ✗."] },
+          { t: ["Debriefing", "Debriefing"], lv: "s", fb: ["O debriefing funcionou com todos.", "The debriefing worked for everyone."] }
+        ],
+        hint: ["Contem as cruzes (✗) em cada linha. Onde há mais?", "Count the crosses (✗) in each row. Where are there most?"],
+        success: ["Isso! A Decisão 1 falhou com todos os testadores. Quem escolhe a melhoria são os dados, não a opinião.", "Yes! Decision 1 failed with every tester. The data chooses the improvement, not opinion."] }
+    ],
+    debrief: {
+      what: ["Puseram o ciclo por ordem, observaram sem ajudar e usaram os dados para escolher a melhoria.", "You put the cycle in order, watched without helping and used data to choose the improvement."],
+      why: ["Mudar uma coisa de cada vez mostra se foi essa mudança que resultou.", "Changing one thing at a time shows whether that change worked."],
+      next: ["Depois de melhorar, testem outra vez e comparem os resultados.", "After improving, test again and compare the results."] },
+    fact: ["Nos hospitais, as equipas também treinam, observam e melhoram. Chama-se melhoria contínua da qualidade.", "In hospitals, teams also practise, observe and improve. It’s called continuous quality improvement."],
+    mission: {
+      e: { title: ["Testar sem salvar", "Test without rescuing"], min: 25,
+        materials: ["Grelha de validação, dispositivo com gravação de ecrã, Worksheet 6", "Validation grid, device with screen recording, Worksheet 6"],
+        steps: [
+          ["Escolham os papéis: testador/a, observador/a e quem grava.", "Choose roles: tester, observer and recorder."],
+          ["O/a testador/a joga a cena de outra equipa e pensa em voz alta.", "The tester plays another team’s scene and thinks aloud."],
+          ["O/a observador/a preenche a grelha com ✓ ou ✗ e não ajuda.", "The observer fills in the grid with ✓ or ✗ and doesn’t help."],
+          ["Perguntem ao/à testador/a: foi fácil? O feedback ajudou? Gostaste?", "Ask the tester: was it easy? Did the feedback help? Did you enjoy it?"]
+        ],
+        deliver: ["Worksheet 6 — secções 1 a 5", "Worksheet 6 — sections 1 to 5"] },
+      s: { title: ["Os dados decidem", "Let the data decide"], min: 30,
+        materials: ["Grelha de validação, dispositivo com gravação de ecrã, Worksheet 6", "Validation grid, device with screen recording, Worksheet 6"],
+        steps: [
+          ["Testem 2 cenas de outras equipas com a grelha de validação.", "Test 2 other teams’ scenes with the validation grid."],
+          ["Juntem os resultados numa tabela e contem os problemas de cada linha.", "Put the results in one table and count the problems in each row."],
+          ["Escolham UMA melhoria com base nos dados, façam-na e publiquem a v2.", "Choose ONE improvement based on the data, make it and publish v2."],
+          ["Expliquem em 2 minutos: o problema, a evidência, a mudança e o resultado.", "Explain in 2 minutes: the problem, the evidence, the change and the result."]
+        ],
+        deliver: ["Worksheet 6 — secções 6 a 11", "Worksheet 6 — sections 6 to 11"] }
+    }
+  },
+  /* ---------- ROOM 7 ---------- */
+  {
+    title: ["Palco Final", "Final Stage"], letter: ["A", "Y"],
+    intro: ["Chegou a hora de apresentar! Antes de subirem ao palco, mostrem que sabem usar a tecnologia com ética e pensem no que aprenderam.", "It’s time to present! Before you go on stage, show that you know how to use technology ethically and think about what you learnt."],
+    goal: ["a usar a realidade virtual com ética e a refletir sobre a profissão.", "to use virtual reality ethically and reflect on the career."],
+    puzzles: [
+      { type: "choice",
+        prompt: ["Querem gravar o ecrã enquanto um colega testa a cena. O que fazem primeiro?", "You want to record the screen while a classmate tests your scene. What do you do first?"],
+        options: [
+          { t: ["Gravamos e mostramos a toda a escola", "Record it and show the whole school"], fb: ["E se o colega não quiser? Primeiro é preciso perguntar.", "What if your classmate doesn’t want that? First you need to ask."] },
+          { t: ["Gravamos às escondidas", "Record it secretly"], fb: ["Gravar alguém sem saber não é justo.", "Recording someone without them knowing isn’t fair."] },
+          { t: ["Perguntamos se ele ou ela concorda", "Ask if they agree"], ok: true }
+        ],
+        hint: ["Pensem em como se sentiriam se alguém vos gravasse sem perguntar.", "Think about how you would feel if someone recorded you without asking."],
+        success: ["Certo! Pedir autorização chama-se consentimento.", "Correct! Asking permission is called consent."] },
+      { type: "choice",
+        prompt: ["Quanto tempo deve uma criança usar óculos de realidade virtual de cada vez?", "How long should a child use a virtual reality headset at a time?"],
+        options: [
+          { t: ["Uma hora seguida, de pé", "A whole hour, standing up"], fb: ["É tempo demais e de pé há mais risco de cair.", "That’s too long, and standing up makes falling more likely."] },
+          { t: ["Pouco tempo (até cerca de 10 minutos), sentada e com um adulto por perto", "A short time (up to about 10 minutes), sitting down, with an adult nearby"], ok: true },
+          { t: ["O tempo que quiser, sozinha", "As long as they like, on their own"], fb: ["Os olhos e o corpo precisam de pausas, e um adulto deve estar por perto.", "Eyes and bodies need breaks, and an adult should be nearby."] }
+        ],
+        hint: ["Os olhos e o corpo precisam de pausas. E é mais seguro estar sentado.", "Your eyes and body need breaks. And it’s safer to sit down."],
+        success: ["Isso mesmo: pouco tempo, sentado e com um adulto por perto.", "That’s right: a short time, sitting down and with an adult nearby."] },
+      { type: "choice", lv: "s",
+        prompt: ["A cena guarda as escolhas de cada jogador. Como protegem esses dados?", "The scene saves each player’s choices. How do you protect that data?"],
+        options: [
+          { t: ["Publicamos os nomes e as respostas na internet", "Post the names and answers online"], fb: ["Os dados de cada pessoa são dela. Não se publicam.", "Each person’s data belongs to them. It isn’t posted online."] },
+          { t: ["Usamos contas da escola e não guardamos nomes nem fotografias", "Use school accounts and don’t save names or photos"], ok: true },
+          { t: ["Partilhamos com quem pedir", "Share it with anyone who asks"], fb: ["Só quem precisa deve ver os dados.", "Only people who need the data should see it."] }
+        ],
+        hint: ["Os dados de cada pessoa são dela. Guardem só o que é preciso.", "Each person’s data belongs to them. Only keep what you need."],
+        success: ["Muito bem! Proteger os dados é uma regra de ouro na saúde.", "Well done! Protecting data is a golden rule in health."] },
+      { type: "order", lv: "s",
+        prompt: ["Ponham a apresentação de 5 minutos por ordem.", "Put the 5-minute presentation in order."],
+        items: [
+          { t: ["O nosso desafio de saúde e para quem é", "Our health challenge and who it is for"] },
+          { t: ["Demonstrar a cena", "Demonstrate the scene"] },
+          { t: ["Decisão 1: o que escolhemos e porquê", "Decision 1: what we chose and why"] },
+          { t: ["Decisão 2: o que escolhemos e porquê", "Decision 2: what we chose and why"] },
+          { t: ["O que melhorámos na versão 2", "What we improved in version 2"] }
+        ],
+        hint: ["Comecem pelo problema e acabem no que melhoraram.", "Start with the problem and end with what you improved."],
+        success: ["Apresentação pronta! Mostrem a cena e digam sempre “porque…”.", "Presentation ready! Show the scene and always say “because…”."] },
+      { type: "reflect",
+        prompt: ["Antes da porta: pensem no que aprenderam. As respostas vão aparecer no vosso certificado.", "Before the door: think about what you learnt. Your answers will appear on your certificate."],
+        prompts: [
+          { t: ["Antes deste projeto, eu pensava que um/a Especialista XR em Saúde…", "Before this project, I thought an XR Health Specialist…"] },
+          { t: ["Agora sei que…", "Now I know that…"] },
+          { t: ["Uma competência que desenvolvi foi…", "A skill I developed is…"], lv: "s" }
+        ],
+        hint: ["Escrevam uma frase curta. Não há respostas erradas.", "Write one short sentence. There are no wrong answers."],
+        success: ["Obrigado por partilharem! Refletir é a última parte do debriefing.", "Thank you for sharing! Reflecting is the last part of the debriefing."] }
+    ],
+    debrief: {
+      what: ["Pensaram no consentimento, no tempo de ecrã e nos dados, e prepararam a apresentação.", "You thought about consent, screen time and data, and prepared your presentation."],
+      why: ["A tecnologia na saúde tem de proteger as pessoas, não apenas ensiná-las.", "Health technology must protect people, not just teach them."],
+      next: ["Na apresentação, expliquem duas decisões com evidências dos testes.", "In your presentation, explain two decisions with evidence from testing."] },
+    fact: ["Um/a Especialista XR em Saúde usa Ciências, Matemática, TIC, Artes, Línguas e Cidadania: todas as disciplinas que usaram neste projeto!", "An XR Health Specialist uses Science, Maths, ICT, Art, Languages and Citizenship: every subject you used in this project!"],
+    mission: {
+      e: { title: ["Apresentar e assinalar", "Present and spot"], min: 30,
+        materials: ["Projetor, códigos de partilha da v2, Worksheet 7", "Projector, v2 share codes, Worksheet 7"],
+        steps: [
+          ["Preparem a apresentação de 5 minutos e decidam quem fala em cada minuto.", "Prepare the 5-minute presentation and decide who speaks in each minute."],
+          ["Mostrem a cena e expliquem uma escolha com “porque…”.", "Show the scene and explain one choice with “because…”."],
+          ["Enquanto as outras equipas apresentam, assinalem os 4 elementos que veem.", "While the other teams present, tick the 4 elements you see."],
+          ["Recortem o cartão para casa e o certificado.", "Cut out the take-home card and the certificate."]
+        ],
+        deliver: ["Worksheet 7 — secções 1 a 3 e página de recorte", "Worksheet 7 — sections 1 to 3 and the cut-out page"] },
+      s: { title: ["Justificar e refletir", "Justify and reflect"], min: 45,
+        materials: ["Projetor, códigos de partilha da v2, Worksheet 7", "Projector, v2 share codes, Worksheet 7"],
+        steps: [
+          ["Apresentem e justifiquem duas decisões com evidências dos testes.", "Present and justify two decisions with evidence from testing."],
+          ["Avaliem uma equipa com a rubrica: 1 Emergente · 2 Em desenvolvimento · 3 Proficiente.", "Score one team with the rubric: 1 Emerging · 2 Developing · 3 Proficient."],
+          ["Respondam às 6 perguntas de reflexão, incluindo a das questões éticas.", "Answer the 6 reflection questions, including the one about ethical issues."],
+          ["Desafio: escrevam um guia de 3 passos para um/a enfermeiro/a escolar usar a vossa cena.", "Challenge: write a 3-step guide for a school nurse to use your scene."]
+        ],
+        deliver: ["Worksheet 7 — secções 1 a 8", "Worksheet 7 — sections 1 to 8"] }
+    }
+  }
+];
+
+/* Accessibility-check scene for Room 4 (spot puzzle) */
+const SPOT = [
+  { id: "title", bad: false, fb: ["O título é claro e curto. Está bem!", "The title is clear and short. That’s fine!"] },
+  { id: "long", bad: true, fb: ["Palavras difíceis! Usem palavras simples: “Lava as mãos antes de comer.”", "Difficult words! Use plain language: “Wash your hands before you eat.”"] },
+  { id: "img", bad: true, fb: ["Esta imagem não tem legenda. Cada imagem precisa de um texto que diga o que é.", "This picture has no label. Every picture needs text that says what it is."] },
+  { id: "imgok", bad: false, fb: ["Esta imagem tem legenda. Está bem!", "This picture has a label. That’s fine!"] },
+  { id: "faint", bad: true, fb: ["Quase não se lê! O texto precisa de bom contraste e de bom tamanho.", "You can hardly read it! Text needs good contrast and a good size."] },
+  { id: "audio", bad: true, lv: "s", fb: ["Quem não ouve bem perde esta informação. Acrescentem legendas.", "Anyone who can’t hear well misses this. Add captions."] },
+  { id: "next", bad: false, fb: ["A indicação “Seguinte” mostra o caminho. Está bem!", "The “Next” cue shows the way. That’s fine!"] }
+];
+
+const TEACHER = {
+  intro: ["Este escape room acompanha o material “Designing Virtual Reality Experiences for Health Education and Well-being” (STEM Jobs for the Future). Cada sala corresponde a uma sessão dos planos de aula e termina com uma missão na sala de aula ligada à worksheet dessa sessão.", "This escape room goes with the teaching material “Designing Virtual Reality Experiences for Health Education and Well-being” (STEM Jobs for the Future). Each room matches one session of the lesson plans and ends with a classroom mission linked to that session’s worksheet."],
+  waysTitle: ["Duas formas de jogar", "Two ways to play"],
+  ways: [
+    { t: ["Escape room completo", "Full escape room"], d: ["45 a 60 minutos. Equipas de 3, um tablet ou computador por equipa. No fim, comparem as estrelas e, se usaram o cronómetro, o tempo.", "45 to 60 minutes. Teams of 3, one tablet or computer per team. At the end, compare stars and, if you used the stopwatch, times."] },
+    { t: ["Uma sala por sessão", "One room per session"], d: ["10 minutos no início de cada aula. Joguem a sala da sessão e passem logo à missão na sala. Ativem “Desbloquear todas as salas” se quiserem saltar salas.", "10 minutes at the start of each lesson. Play that session’s room and move straight on to the classroom mission. Turn on “Unlock all rooms” if you want to skip rooms."] }
+  ],
+  levelsTitle: ["Níveis", "Levels"],
+  levels: ["Exploradores (8–9 anos): menos peças por desafio, frases mais curtas e missões guiadas passo a passo. Especialistas (10–12 anos): mais peças, um desafio extra em cada sala e missões com mais autonomia e uso de dados.", "Explorers (ages 8–9): fewer pieces per puzzle, shorter sentences and step-by-step missions. Specialists (ages 10–12): more pieces, an extra puzzle in every room and missions with more independence and use of data."],
+  scoreTitle: ["Estrelas e pistas", "Stars and hints"],
+  score: ["Cada sala vale até 3 estrelas. A equipa perde uma estrela se errar uma verificação e outra se usar uma pista (mínimo de 1 estrela). As pistas mostram o caminho sem dar a resposta.", "Each room is worth up to 3 stars. A team loses one star for a wrong check and another for using a hint (minimum 1 star). Hints point the way without giving the answer."],
+  safetyTitle: ["Segurança e ética", "Safety and ethics"],
+  safety: ["Óculos de RV (se usarem): crianças sentadas, no máximo 10 minutos cada, com um adulto a supervisionar. Usem só contas da escola, não coloquem fotografias das crianças nas cenas e verifiquem os conteúdos de saúde em fontes como a DGS, a OMS ou o NHS.", "VR headsets (if used): children seated, up to 10 minutes each, with an adult supervising. Use school accounts only, don’t put photos of children in scenes and check health content against sources such as the WHO, the NHS or the DGS."],
+  storageTitle: ["Progresso", "Progress"],
+  storage: ["O progresso fica guardado apenas neste navegador e neste dispositivo. Para uma nova equipa, usem “Começar de novo”.", "Progress is saved only in this browser on this device. For a new team, use “Start again”."],
+  tableTitle: ["Salas, sessões e worksheets", "Rooms, sessions and worksheets"],
+  thRoom: ["Sala", "Room"], thSession: ["Sessão do plano de aula", "Lesson plan session"], thWs: ["Worksheet", "Worksheet"], thPuzzles: ["Desafios (8–9 / 10–12)", "Puzzles (8–9 / 10–12)"],
+  unlockAll: ["Desbloquear todas as salas", "Unlock all rooms"],
+  resetAll: ["Apagar o progresso", "Delete progress"],
+  resetConfirm: ["Tem a certeza? O progresso, as estrelas e as reflexões desta equipa vão ser apagados.", "Are you sure? This team’s progress, stars and reflections will be deleted."],
+  resetYes: ["Sim, apagar", "Yes, delete"],
+  resetDone: ["Progresso apagado.", "Progress deleted."]
+};
+
+</script>
+<script>
+(function () {
+  'use strict';
+  const KEY = 'xr-health-escape-v1';
+  const $ = (s, el) => (el || document).querySelector(s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  /* ---------- icons ---------- */
+  const sv = (d, extra) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra || ''}>${d}</svg>`;
+  const I = {
+    headset: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M4.5 7.5h15a2.5 2.5 0 0 1 2.5 2.5v4.6a2.9 2.9 0 0 1-2.9 2.9h-3.3a2 2 0 0 1-1.7-1l-.9-1.5a1.4 1.4 0 0 0-2.4 0l-.9 1.5a2 2 0 0 1-1.7 1H4.9A2.9 2.9 0 0 1 2 14.6V10a2.5 2.5 0 0 1 2.5-2.5Z"/><circle cx="7.6" cy="12.2" r="1.9" fill="#0b5cad"/><circle cx="16.4" cy="12.2" r="1.9" fill="#0b5cad"/><path fill="#fff" d="M9 5.2h6a1 1 0 0 1 1 1v1.3H8V6.2a1 1 0 0 1 1-1Z"/></svg>`,
+    book: sv('<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5z"/><path d="M9 7h7M9 10.5h5"/>'),
+    aa: sv('<path d="M3 18 7.5 6 12 18M4.6 14h5.8"/><path d="M15 12.5a3 3 0 1 1 0 4.2M21 11v7"/>'),
+    speaker: sv('<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'),
+    stopI: sv('<rect x="6" y="6" width="12" height="12" rx="2"/>'),
+    bulb: sv('<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/>'),
+    check: sv('<path d="m5 12.5 4.5 4.5L19 7.5"/>'),
+    x: sv('<path d="M6 6l12 12M18 6 6 18"/>'),
+    info: sv('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+    clock: sv('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+    left: sv('<path d="M15 5 8 12l7 7"/>'),
+    right: sv('<path d="m9 5 7 7-7 7"/>'),
+    target: sv('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
+    spark: sv('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>'),
+    lock: sv('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+    door: sv('<path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18"/><path d="M14.5 12h.01"/>'),
+    refresh: sv('<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>'),
+    map: sv('<path d="M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/>'),
+    users: sv('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/>'),
+    star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>',
+    soap: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="26" width="44" height="26" rx="10" fill="#9fd8ff"/><rect x="16" y="31" width="32" height="8" rx="4" fill="#d9f1ff"/><circle cx="24" cy="16" r="6" fill="none" stroke="#d9f1ff" stroke-width="3"/><circle cx="38" cy="12" r="4" fill="none" stroke="#d9f1ff" stroke-width="3"/><circle cx="46" cy="20" r="3" fill="none" stroke="#d9f1ff" stroke-width="3"/></svg>',
+    tap: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22h26a8 8 0 0 1 8 8v6h-8v-4H10z" fill="#9fd8ff"/><rect x="18" y="12" width="10" height="10" rx="2" fill="#d9f1ff"/><path d="M40 44c0 4 4 6 4 10a4 4 0 0 1-8 0c0-4 4-6 4-10z" fill="#5fc4ff"/></svg>',
+    audio: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#ffffff22"/><path d="M12 10.5v11l9-5.5z" fill="#fff"/></svg>'
+  };
+
+  /* ---------- state ---------- */
+  let state;
+  const ui = { tab: 'puzzle', pIndex: 0, work: null, fb: null, solvedNow: false, showDone: false, overlay: false, confirm: null, door: [], speaking: false, toast: '' };
+  const canSpeak = typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined';
+
+  function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function shuffled(n) {
+    const base = Array.from({ length: n }, (_, k) => k);
+    if (n < 2) return base;
+    let s; let guard = 0;
+    do { s = shuffle(base); guard++; } while (s.every((v, k) => v === k) && guard < 20);
+    return s;
+  }
+  function fresh(prev) {
+    return {
+      v: 1, lang: prev ? prev.lang : 'pt', big: prev ? prev.big : false, contrast: prev ? prev.contrast : false,
+      level: 'explorer', team: '', timerOn: false, elapsed: 0, started: false, finished: false, finishedAt: null,
+      unlockAll: prev ? prev.unlockAll : false, screen: 'home', back: 'home', room: 0,
+      rooms: ROOMS.map(() => ({ solved: false, done: [], mistake: false, hint: false })),
+      slots: shuffled(ROOMS.length), reflections: {}
+    };
+  }
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY));
+      if (s && s.v === 1 && Array.isArray(s.rooms) && s.rooms.length === ROOMS.length) return s;
+    } catch (e) { /* storage unavailable */ }
+    return null;
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignore */ } }
+
+  const T = x => Array.isArray(x) ? (state.lang === 'pt' ? x[0] : x[1]) : x;
+  const S = k => T(STR[k]);
+  const isS = () => state.level === 'specialist';
+  const lvOK = it => !it.lv || (it.lv === 's' ? isS() : !isS());
+  const puzzlesOf = R => R.puzzles.filter(lvOK);
+  const unlocked = i => state.unlockAll || i === 0 || state.rooms[i - 1].solved;
+  const allSolved = () => state.rooms.every(r => r.solved);
+  const starsOf = i => { const r = state.rooms[i]; return Math.max(1, 3 - (r.mistake ? 1 : 0) - (r.hint ? 1 : 0)); };
+  const totalStars = () => state.rooms.reduce((n, r, i) => n + (r.solved ? starsOf(i) : 0), 0);
+  const fmtTime = ms => { const t = Math.floor(ms / 1000); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+  const starRow = n => `<span class="stars" aria-label="${n} / 3">${[0, 1, 2].map(k => `<span class="${k < n ? 'star-on' : 'star-off'}">${I.star}</span>`).join('')}</span>`;
+  const levelName = () => isS() ? `${S('specialist')} · ${S('specialistAge')}` : `${S('explorer')} · ${S('explorerAge')}`;
+
+  /* ---------- puzzle work ---------- */
+  function initWork(p) {
+    if (!p) return null;
+    switch (p.type) {
+      case 'order': return { pool: shuffled(p.items.filter(lvOK).length), placed: [], marks: null };
+      case 'match': return { right: shuffled(p.pairs.filter(lvOK).length), sel: null, pairs: {}, marks: null };
+      case 'sort': return { order: shuffle(p.items.map((_, k) => k).filter(k => lvOK(p.items[k]))), ans: {}, marks: null };
+      case 'choice': return { order: shuffle(p.options.map((_, k) => k).filter(k => lvOK(p.options[k]))), pick: null, marks: null };
+      case 'multi': return { order: shuffle(p.options.map((_, k) => k).filter(k => lvOK(p.options[k]))), picks: [], marks: null };
+      case 'spot': return { found: [], ok: [] };
+      default: return {};
+    }
+  }
+  function enterRoom(i) {
+    const rs = state.rooms[i];
+    const P = puzzlesOf(ROOMS[i]);
+    let k = 0;
+    while (k < P.length && rs.done.indexOf(k) !== -1) k++;
+    ui.pIndex = Math.min(k, P.length - 1);
+    ui.work = initWork(P[ui.pIndex]);
+    ui.fb = null; ui.solvedNow = false; ui.showDone = rs.solved; ui.tab = 'puzzle';
+  }
+  function current() { const R = ROOMS[state.room]; return { R, rs: state.rooms[state.room], P: puzzlesOf(R) }; }
+
+  /* ---------- render helpers ---------- */
+  function topbar() {
+    const inv = state.slots.map(ri => {
+      const got = state.rooms[ri].solved;
+      return `<span class="${got ? 'got' : ''}">${got ? esc(T(ROOMS[ri].letter)) : '·'}</span>`;
+    }).join('');
+    const timer = state.timerOn && state.started ? `<span class="timer" title="${esc(S('timeLabel'))}">${I.clock}<span id="timer">${fmtTime(state.elapsed)}</span></span>` : '';
+    return `<div class="wrap">
+      <button class="brand" data-act="home" aria-label="${esc(S('home'))}"><span class="brand-mark">${I.headset}</span><span class="brand-name">${esc(S('brand'))}</span></button>
+      <div class="top-mid">${state.started ? `<div class="inv" role="img" aria-label="${esc(S('letters'))}">${inv}</div>` : ''}${timer}</div>
+      <div class="top-right">
+        <div class="seg" role="group" aria-label="${esc(S('lang'))}">
+          <button data-act="lang" data-v="pt" aria-pressed="${state.lang === 'pt'}" lang="pt-PT">PT</button>
+          <button data-act="lang" data-v="en" aria-pressed="${state.lang === 'en'}" lang="en-GB">EN</button>
+        </div>
+        <button class="icon-btn" data-act="overlay" aria-haspopup="dialog">${I.aa}<span class="lbl">${esc(S('settings'))}</span></button>
+        <button class="icon-btn" data-act="teacher">${I.book}<span class="lbl">${esc(S('teacher'))}</span></button>
+      </div></div>`;
+  }
+  function speakBtn(id) {
+    if (!canSpeak) return '';
+    return `<button class="btn btn-ghost" data-act="speak" data-v="${id}">${ui.speaking ? I.stopI : I.speaker}${esc(ui.speaking ? S('stop') : S('listen'))}</button>`;
+  }
+  function feedback() {
+    if (!ui.fb) return '<div class="sr" role="status" aria-live="polite"></div>';
+    const icon = { ok: I.check, bad: I.x, hint: I.bulb, info: I.info }[ui.fb.kind];
+    return `<div class="feedback ${ui.fb.kind}" role="status" aria-live="polite">${icon}<div>${ui.fb.html}</div></div>`;
+  }
+
+  /* ---------- screens ---------- */
+  function screenHome() {
+    const titleHTML = state.lang === 'pt' ? 'Missão <em>XR</em> Saúde' : '<em>XR</em> Health Mission';
+    const started = state.started;
+    const lvBtn = (v, n, a, d) => `<button class="level" data-act="level" data-v="${v}" aria-pressed="${state.level === v}" ${started ? 'disabled aria-disabled="true"' : ''}><strong>${esc(S(n))}</strong><span class="age">${esc(S(a))}</span><span class="desc">${esc(S(d))}</span></button>`;
+    const confirm = ui.confirm === 'new' ? `<div class="confirm" role="alertdialog" aria-live="assertive"><p>${esc(S('newGameConfirm'))}</p><div class="btn-row"><button class="btn btn-blue" data-act="confirmNew">${esc(S('yes'))}</button><button class="btn btn-ghost" data-act="confirmNo">${esc(S('no'))}</button></div></div>` : '';
+    const buttons = started
+      ? `<div class="btn-row"><button class="btn btn-primary" data-act="cont">${esc(S('cont'))}${I.right}</button><button class="btn btn-ghost" data-act="askNew">${I.refresh}${esc(S('newGame'))}</button></div>${confirm}`
+      : `<div class="btn-row"><button class="btn btn-primary" data-act="start">${esc(S('start'))}${I.right}</button></div>`;
+    return `<div class="wrap">
+      <section class="hero">
+        <p class="eyebrow light">${esc(S('eyebrow'))}</p>
+        <h1 id="h">${titleHTML}</h1>
+        <p class="lead">${esc(S('homeLead'))}</p>
+        <div class="btn-row">${canSpeak ? `<button class="btn btn-light" data-act="speak" data-v="home">${ui.speaking ? I.stopI : I.speaker}${esc(ui.speaking ? S('stop') : S('listen'))}</button>` : ''}</div>
+      </section>
+      <div class="home-grid" style="margin-top:22px">
+        <section class="panel stack">
+          <div class="career"><span class="hexicon">${I.headset}</span><div><p class="eyebrow">${esc(S('careerTitle'))}</p><h3>${esc(S('careerName'))}</h3><p class="small">${esc(S('careerText'))}</p></div></div>
+          <div class="field"><label for="team">${esc(S('teamLabel'))}</label><input class="input" id="team" maxlength="40" autocomplete="off" placeholder="${esc(S('teamPh'))}" value="${esc(state.team)}"></div>
+          <div class="field"><span class="label">${esc(S('levelLabel'))}</span><div class="levels">${lvBtn('explorer', 'explorer', 'explorerAge', 'explorerDesc')}${lvBtn('specialist', 'specialist', 'specialistAge', 'specialistDesc')}</div>${started ? `<p class="small">${esc(S('levelLocked'))}</p>` : ''}</div>
+          <label class="switch" for="timerOn"><input type="checkbox" id="timerOn" ${state.timerOn ? 'checked' : ''}><span><span class="label">${esc(S('timerLabel'))}</span><br><span class="small">${esc(S('timerNote'))}</span></span></label>
+          ${buttons}
+        </section>
+        <section class="panel stack">
+          <h2 style="font-size:1.6rem">${esc(S('howTitle'))}</h2>
+          <ol class="how">${STR.how.map(h => `<li><span>${esc(T(h))}</span></li>`).join('')}</ol>
+          <div class="goal">${I.star}<span>${esc(S('stars3'))} ${esc(S('hintCost'))}</span></div>
+          <button class="btn btn-ghost" data-act="teacher">${I.book}${esc(S('teacher'))}</button>
+        </section>
+      </div></div>`;
+  }
+
+  function screenMap() {
+    const cells = ROOMS.map((R, i) => {
+      const rs = state.rooms[i];
+      const open = unlocked(i);
+      const cls = rs.solved ? 'is-solved' : (open ? '' : 'is-locked');
+      const status = rs.solved ? starRow(starsOf(i)) : (open ? esc(S('open')) : `<span class="lock">${I.lock}</span>`);
+      const statusTxt = rs.solved ? S('solved') : (open ? S('open') : S('locked'));
+      return `<div class="hexcell"><button class="hex ${cls}" data-act="room" data-i="${i}" ${open ? '' : 'disabled'} aria-label="${esc(`${S('room')} ${i + 1}: ${T(R.title)} — ${statusTxt}`)}">
+        <span class="hex-shape"></span><span class="hex-in"><span class="hex-num">${i + 1}</span><span class="hex-title">${esc(T(R.title))}</span><span class="hex-status">${status}</span></span></button></div>`;
+    }).join('');
+    const ready = allSolved();
+    const door = `<div class="hexcell"><button class="hex is-door" data-act="door" ${ready ? '' : 'disabled'} aria-label="${esc(S('door'))}">
+      <span class="hex-shape"></span><span class="hex-in"><span class="hex-num">${I.door.replace('aria-hidden="true"', 'aria-hidden="true" style="width:34px;height:34px;margin:0 auto"')}</span><span class="hex-title">${esc(S('door'))}</span><span class="hex-status">${esc(ready ? '' : S('doorLocked'))}</span></span></button></div>`;
+    const solved = state.rooms.filter(r => r.solved).length;
+    return `<div class="wrap">
+      <div class="map-head"><p class="eyebrow light">${esc(state.team || S('noTeam'))} · ${esc(levelName())}</p><h1 id="h">${esc(S('map'))}</h1><p class="lead">${esc(S('mapLead'))}</p></div>
+      <div class="hexgrid">${cells}${door}</div>
+      <div class="map-foot"><span>${solved} / 7 · ${totalStars()} / 21 ${esc(S('starsLabel').toLowerCase())}</span><button class="btn btn-light" data-act="teacher">${I.book}${esc(S('teacher'))}</button></div>
+    </div>`;
+  }
+
+  function missionCard(R, key) {
+    const m = R.mission[key];
+    const mine = (key === 's') === isS();
+    const who = key === 's' ? `${S('specialistAge')} · ${S('specialist')}` : `${S('explorerAge')} · ${S('explorer')}`;
+    return `<article class="mission ${mine ? 'mine' : ''}">
+      <div class="mission-top"><span class="pill">${I.users}${esc(who)}</span><span class="pill">${I.clock}${m.min} min</span></div>
+      ${mine ? `<span class="pill lime" style="justify-self:start">${esc(S('yourLevel'))}</span>` : ''}
+      <h3>${esc(T(m.title))}</h3>
+      <ol>${m.steps.map(s => `<li>${esc(T(s))}</li>`).join('')}</ol>
+      <div class="meta"><span><b>${esc(S('materials'))}:</b> ${esc(T(m.materials))}</span><span><b>${esc(S('deliver'))}:</b> ${esc(T(m.deliver))}</span></div>
+    </article>`;
+  }
+
+  function puzzleBody(p, w) {
+    if (p.type === 'order') {
+      const items = p.items.filter(lvOK);
+      const n = items.length;
+      const slots = Array.from({ length: n }, (_, k) => {
+        const v = w.placed[k];
+        if (v == null) return `<div class="slot"><span class="n">${k + 1}</span><div class="empty">${k === w.placed.length ? '…' : ''}</div></div>`;
+        const mk = w.marks ? (w.marks[k] ? 'is-ok' : 'is-bad') : '';
+        return `<div class="slot"><span class="n">${k + 1}</span><button class="cardbtn ${mk}" data-act="oslot" data-k="${k}">${esc(T(items[v].t))}</button></div>`;
+      }).join('');
+      const pool = w.pool.filter(v => w.placed.indexOf(v) === -1)
+        .map(v => `<button class="cardbtn" data-act="opick" data-k="${v}">${esc(T(items[v].t))}</button>`).join('');
+      const ends = p.slotLabels ? `<div class="slot-ends"><span>↑ ${esc(T(p.slotLabels[0]))}</span><span>${esc(T(p.slotLabels[1]))} ↓</span></div>` : '';
+      return `<div class="stack" style="gap:12px">${ends}<div class="slots">${slots}</div>${pool ? `<p class="area-label">${state.lang === 'pt' ? 'Cartões' : 'Cards'}</p><div class="pool">${pool}</div>` : ''}</div>`;
+    }
+    if (p.type === 'match') {
+      const pairs = p.pairs.filter(lvOK);
+      const L = 'ABCDEFG';
+      const rightOwner = {};
+      Object.keys(w.pairs).forEach(a => { rightOwner[w.pairs[a]] = +a; });
+      const left = pairs.map((pr, k) => {
+        const mk = w.marks ? (w.marks[k] ? 'is-ok' : 'is-bad') : '';
+        return `<button class="cardbtn ${mk}" data-act="mleft" data-k="${k}" aria-pressed="${w.sel === k}"><span class="badge">${L[k]}</span><span>${esc(T(pr.a))}</span></button>`;
+      }).join('');
+      const right = w.right.map(r => {
+        const owner = rightOwner[r];
+        const has = owner != null;
+        const mk = w.marks && has ? (w.marks[owner] ? 'is-ok' : 'is-bad') : '';
+        return `<button class="cardbtn ${mk}" data-act="mright" data-k="${r}" aria-pressed="${has}"><span class="badge">${has ? L[owner] : '?'}</span><span>${esc(T(pairs[r].b))}</span></button>`;
+      }).join('');
+      return `<div class="match"><div class="col">${left}</div><div class="col">${right}</div></div>`;
+    }
+    if (p.type === 'sort') {
+      return `<div class="sort">${w.order.map(k => {
+        const it = p.items[k];
+        const mk = w.marks ? (w.marks[k] ? 'is-ok' : 'is-bad') : '';
+        const chips = p.bins.map((b, bi) => `<button class="chip" data-act="sbin" data-k="${k}" data-b="${bi}" aria-pressed="${w.ans[k] === bi}">${esc(T(b))}</button>`).join('');
+        return `<div class="sort-row ${mk}"><span>${esc(T(it.t))}</span><div class="chips" role="group">${chips}</div></div>`;
+      }).join('')}</div>`;
+    }
+    if (p.type === 'choice' || p.type === 'multi') {
+      const multi = p.type === 'multi';
+      return `<div class="options">${w.order.map(k => {
+        const o = p.options[k];
+        const on = multi ? w.picks.indexOf(k) !== -1 : w.pick === k;
+        const mk = w.marks && w.marks[k] != null ? (w.marks[k] ? 'is-ok' : 'is-bad') : '';
+        return `<button class="cardbtn ${mk}" data-act="${multi ? 'mpick' : 'cpick'}" data-k="${k}" aria-pressed="${on}"><span class="badge">${on ? '✓' : ''}</span><span>${esc(T(o.t))}</span></button>`;
+      }).join('')}</div>`;
+    }
+    if (p.type === 'spot') {
+      const st = id => {
+        const found = w.found.indexOf(id) !== -1, ok = w.ok.indexOf(id) !== -1;
+        return { cls: found ? 'found' : (ok ? 'checked' : ''), tag: found ? `<span class="tag">${state.lang === 'pt' ? 'Problema' : 'Problem'}</span>` : (ok ? `<span class="tag">${state.lang === 'pt' ? 'Está bem' : 'Fine'}</span>` : '') };
+      };
+      const b = (id, inner, label) => { const s = st(id); return `<button class="spot ${s.cls}" data-act="spot" data-id="${id}" aria-label="${esc(label)}">${s.tag}${inner}</button>`; };
+      const pt = state.lang === 'pt';
+      const audio = isS() ? b('audio', `<span class="audio-row">${I.audio}<span>${pt ? 'Áudio da enfermeira · 0:42' : 'Nurse’s audio · 0:42'}</span></span>`, pt ? 'Áudio da enfermeira' : 'Nurse’s audio') : '';
+      return `<div class="scene" role="group" aria-label="${pt ? 'Cena para rever' : 'Scene to check'}">
+        <div class="scene-top"><span>FrameVR.io · ${pt ? 'Cena 2' : 'Scene 2'}</span><span>v1</span></div>
+        ${b('title', `<span class="spot-title">${pt ? 'Lava as mãos' : 'Wash your hands'}</span>`, pt ? 'Título' : 'Title')}
+        <div class="scene-grid">
+          ${b('long', `<span class="spot-long">${pt ? 'Previamente à ingestão de alimentos, é imprescindível proceder à higienização minuciosa das extremidades superiores.' : 'Prior to the ingestion of nourishment, it is imperative to perform a meticulous sanitisation of the upper extremities.'}</span>`, pt ? 'Instrução' : 'Instruction')}
+          <div style="display:grid;gap:12px">
+            ${b('img', `<span class="pic">${I.soap}</span>`, pt ? 'Imagem 1' : 'Picture 1')}
+            ${b('imgok', `<span class="pic">${I.tap}</span><span style="font-weight:600">${pt ? 'Torneira' : 'Tap'}</span>`, pt ? 'Imagem 2: Torneira' : 'Picture 2: Tap')}
+          </div>
+        </div>
+        ${b('faint', `<span class="faint-btn">${pt ? 'ler as instruções outra vez' : 'read the instructions again'}</span>`, pt ? 'Botão pequeno' : 'Small button')}
+        ${audio}
+        ${b('next', `<span class="next-cue">${pt ? 'Seguinte →' : 'Next →'}</span>`, pt ? 'Seguinte' : 'Next')}
+      </div>
+      <p class="found-count">${esc(S('found'))}: ${w.found.length} / ${SPOT.filter(lvOK).filter(s => s.bad).length}</p>`;
+    }
+    if (p.type === 'reflect') {
+      return `<div class="reflect">${p.prompts.map((q, k) => lvOK(q) ? `<div class="field"><label for="refl${k}">${esc(T(q.t))}</label><textarea class="input" id="refl${k}" data-refl="${k}" maxlength="300">${esc(state.reflections[k] || '')}</textarea></div>` : '').join('')}</div>`;
+    }
+    return '';
+  }
+
+  function helpText(p) {
+    return { order: S('orderHelp'), match: S('matchHelp'), sort: S('sortHelp'), choice: S('choiceHelp'), multi: S('multiHelp'), spot: S('spotHelp'), reflect: S('reflectHelp') }[p.type];
+  }
+
+  function extras(p) {
+    let h = '';
+    if (p.rules) h += `<p class="rules">${esc(T(p.rules))}</p>`;
+    if (p.quote) h += `<p class="quote">${esc(T(p.quote))}</p>`;
+    if (p.table) {
+      const showCol = c => !(Array.isArray(c) && c[2] === 's') || isS();
+      const cols = p.head.map((c, k) => showCol(c) ? k : -1).filter(k => k >= 0);
+      h += `<div class="datatable-wrap"><table class="datatable"><thead><tr>${cols.map(k => `<th scope="col">${esc(T(p.head[k]))}</th>`).join('')}</tr></thead><tbody>${p.rows.map(r => `<tr>${cols.map(k => k === 0 ? `<th scope="row">${esc(T(r[0]))}</th>` : `<td class="${r[k] === '✗' ? 'x' : 'v'}">${r[k]}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    }
+    return h;
+  }
+
+  function screenRoom() {
+    const { R, rs, P } = current();
+    const i = state.room;
+    const sess = SESSIONS[i];
+    const head = `<div class="crumb"><button data-act="map">${I.left}${esc(S('toMap'))}</button><span>${esc(S('room'))} ${i + 1} ${esc(S('of'))} 7 · ${esc(S('session'))} ${i + 1}: ${esc(T(sess.title))} · ${sess.min} min</span></div>
+      <div class="room-title"><h1 id="h">${esc(T(R.title))}</h1></div>
+      <div class="tabs" role="tablist"><button role="tab" data-act="tab" data-v="puzzle" aria-selected="${ui.tab === 'puzzle'}">${esc(S('tabPuzzle'))}</button><button role="tab" data-act="tab" data-v="mission" aria-selected="${ui.tab === 'mission'}">${esc(S('tabMission'))}</button></div>`;
+    if (ui.tab === 'mission') {
+      return `<div class="wrap narrow">${head}<section class="panel stack">
+        <p class="lead">${esc(S('missionLead'))}</p>
+        <div class="missions">${missionCard(R, 'e')}${missionCard(R, 's')}</div>
+        <p class="small">${esc(S('roles'))}</p>
+        <div class="btn-row"><button class="btn btn-ghost" data-act="tab" data-v="puzzle">${I.left}${esc(S('backPuzzle'))}</button></div>
+      </section></div>`;
+    }
+    if (ui.showDone) {
+      const last = i === ROOMS.length - 1;
+      const nextBtn = allSolved() ? `<button class="btn btn-primary" data-act="door">${I.door}${esc(S('goDoor'))}</button>`
+        : (!last ? `<button class="btn btn-primary" data-act="nextRoom">${esc(S('nextRoom'))}${I.right}</button>` : `<button class="btn btn-primary" data-act="map">${I.map}${esc(S('toMap'))}</button>`);
+      return `<div class="wrap narrow">${head}<section class="panel stack">
+        <div class="done-head"><div class="letter-tile" aria-hidden="true">${esc(T(R.letter))}</div><div class="stack" style="gap:6px"><p class="eyebrow">${esc(S('roomDone'))}</p><h2>${esc(S('letterWon'))} ${esc(T(R.letter))}</h2>${starRow(starsOf(i))}</div></div>
+        <h3 style="font-size:1.3rem">${esc(S('debrief'))}</h3>
+        <div class="debrief"><div><strong>${esc(S('dWhat'))}</strong><span>${esc(T(R.debrief.what))}</span></div><div><strong>${esc(S('dWhy'))}</strong><span>${esc(T(R.debrief.why))}</span></div><div><strong>${esc(S('dNext'))}</strong><span>${esc(T(R.debrief.next))}</span></div></div>
+        <div class="fact">${I.spark}<div><b>${esc(S('didYouKnow'))}</b> ${esc(T(R.fact))}</div></div>
+        <div class="btn-row"><button class="btn btn-blue" data-act="tab" data-v="mission">${I.users}${esc(S('seeMission'))}</button>${nextBtn}<button class="btn btn-ghost" data-act="map">${I.map}${esc(S('toMap'))}</button></div>
+      </section></div>`;
+    }
+    const p = P[ui.pIndex];
+    const w = ui.work;
+    const dots = P.map((_, k) => `<span class="dot ${rs.done.indexOf(k) !== -1 ? 'done' : (k === ui.pIndex ? 'now' : '')}"></span>`).join('');
+    const isLast = ui.pIndex === P.length - 1;
+    const right = ui.solvedNow
+      ? `<button class="btn btn-primary" data-act="nextPuzzle">${esc(isLast ? S('seeLetter') : S('next'))}${I.right}</button>`
+      : (p.type === 'spot' ? '' : `<button class="btn btn-primary" data-act="check">${I.check}${esc(S('check'))}</button>`);
+    const left = ui.solvedNow ? '' : `<button class="btn btn-ghost" data-act="hint">${I.bulb}${esc(S('hint'))}</button>${p.type === 'reflect' ? '' : `<button class="btn btn-ghost" data-act="reset">${I.refresh}${esc(S('reset'))}</button>`}`;
+    return `<div class="wrap narrow">${head}
+      <div class="stack">
+        <section class="panel stack">
+          <div class="story"><p>${esc(T(R.intro))}</p>${speakBtn('room')}</div>
+          <div class="goal">${I.target}<span><b>${esc(S('youLearn'))}:</b> ${esc(T(R.goal))}</span></div>
+        </section>
+        <section class="panel stack" aria-labelledby="pz">
+          <div class="stepper" aria-hidden="true">${dots}<span class="lbl">${esc(S('puzzle'))} ${ui.pIndex + 1} / ${P.length}</span></div>
+          <h2 class="prompt" id="pz">${esc(T(p.prompt))}</h2>
+          ${extras(p)}
+          <p class="help">${esc(helpText(p))}</p>
+          ${puzzleBody(p, w)}
+          ${feedback()}
+          <div class="actions"><div class="btn-row">${left}</div><div class="btn-row">${right}</div></div>
+        </section>
+      </div></div>`;
+  }
+
+  function screenDoor() {
+    if (!allSolved()) {
+      return `<div class="wrap narrow"><section class="panel stack"><h1 id="h" style="color:var(--ocean)">${esc(S('doorTitle'))}</h1><p>${esc(S('doorNeed'))}</p><div class="btn-row"><button class="btn btn-primary" data-act="map">${I.map}${esc(S('toMap'))}</button></div></section></div>`;
+    }
+    const letters = state.slots.map(ri => T(ROOMS[ri].letter));
+    const target = T(WORD);
+    const word = Array.from({ length: target.length }, (_, k) => { const t = ui.door[k]; return `<span class="${t != null ? 'f' : ''}">${t != null ? esc(letters[t]) : ''}</span>`; }).join('');
+    const tiles = letters.map((l, k) => `<button class="tile" data-act="dtile" data-k="${k}" ${ui.door.indexOf(k) !== -1 ? 'disabled' : ''} aria-label="${esc(l)}">${esc(l)}</button>`).join('');
+    return `<div class="wrap narrow">
+      <div class="crumb"><button data-act="map">${I.left}${esc(S('toMap'))}</button></div>
+      <div class="room-title"><p class="eyebrow light">${esc(S('door'))}</p><h1 id="h">${esc(S('doorTitle'))}</h1></div>
+      <section class="panel stack" style="text-align:center">
+        <p class="lead" style="margin:0 auto">${esc(S('doorLead'))}</p>
+        <div class="word" aria-live="polite">${word}</div>
+        <div class="door-tiles">${tiles}</div>
+        ${feedback()}
+        <div class="btn-row" style="justify-content:center"><button class="btn btn-ghost" data-act="dclear">${I.refresh}${esc(S('clear'))}</button><button class="btn btn-ghost" data-act="dhint">${I.bulb}${esc(S('hint'))}</button><button class="btn btn-primary" data-act="dopen">${I.door}${esc(S('doorOpen'))}</button></div>
+      </section></div>`;
+  }
+
+  function screenEnd() {
+    const word = T(WORD).split('').map(l => `<span>${esc(l)}</span>`).join('');
+    const date = new Date(state.finishedAt || Date.now()).toLocaleDateString(state.lang === 'pt' ? 'pt-PT' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    const P7 = ROOMS[6].puzzles.find(p => p.type === 'reflect');
+    const thoughts = P7.prompts.map((q, k) => (state.reflections[k] && state.reflections[k].trim()) ? `<div><i>${esc(T(q.t))}</i>${esc(state.reflections[k])}</div>` : '').join('');
+    return `<div class="wrap narrow"><section class="panel cert">
+      <p class="eyebrow">${esc(S('certEyebrow'))} · STEM Jobs for the Future</p>
+      <h1 id="h">${esc(S('certTitle'))}</h1>
+      <p class="small">${esc(S('ourTeam'))}</p>
+      <p class="team">${esc(state.team || S('noTeam'))}</p>
+      <p style="max-width:46ch">${esc(S('certText'))}</p>
+      <div class="cert-word" aria-label="${esc(T(WORD))}">${word}</div>
+      <div class="cert-stats">
+        <div><b>${totalStars()} / 21</b><span class="small">${esc(S('starsLabel'))}</span></div>
+        ${state.timerOn ? `<div><b>${fmtTime(state.elapsed)}</b><span class="small">${esc(S('timeLabel'))}</span></div>` : ''}
+        <div><b>${esc(isS() ? S('specialist') : S('explorer'))}</b><span class="small">${esc(S('levelWord'))} · ${esc(isS() ? S('specialistAge') : S('explorerAge'))}</span></div>
+        <div><b style="font-size:1.1rem">${esc(date)}</b><span class="small">${esc(S('dateLabel'))}</span></div>
+      </div>
+      ${thoughts ? `<div class="thoughts"><p class="eyebrow">${esc(S('learnt'))}</p>${thoughts}</div>` : ''}
+      <p class="small">${esc(S('certTip'))}</p>
+      <div class="btn-row" style="justify-content:center"><button class="btn btn-primary" data-act="playAgain">${I.refresh}${esc(S('playAgain'))}</button><button class="btn btn-ghost" data-act="map">${I.map}${esc(S('toMap'))}</button></div>
+    </section></div>`;
+  }
+
+  function screenTeacher() {
+    const rows = ROOMS.map((R, i) => {
+      const e = R.puzzles.filter(p => p.lv !== 's').length, s = R.puzzles.filter(p => p.lv !== 'e').length;
+      return `<tr><td><b>${i + 1}. ${esc(T(R.title))}</b></td><td>${i + 1}. ${esc(T(SESSIONS[i].title))} <span class="small">(${SESSIONS[i].min} min)</span></td><td>Worksheet ${i + 1}</td><td>${e} / ${s}</td></tr>`;
+    }).join('');
+    const confirm = ui.confirm === 'reset' ? `<div class="confirm" role="alertdialog"><p>${esc(T(TEACHER.resetConfirm))}</p><div class="btn-row"><button class="btn btn-blue" data-act="resetYes">${esc(T(TEACHER.resetYes))}</button><button class="btn btn-ghost" data-act="confirmNo">${esc(S('no'))}</button></div></div>` : '';
+    const card = (t, d) => `<div class="tcard"><h3>${esc(T(t))}</h3><p>${esc(T(d))}</p></div>`;
+    return `<div class="wrap narrow">
+      <div class="crumb"><button data-act="back">${I.left}${esc(state.lang === 'pt' ? 'Voltar' : 'Back')}</button></div>
+      <div class="room-title"><p class="eyebrow light">${esc(S('brand'))}</p><h1 id="h">${esc(S('teacher'))}</h1></div>
+      <section class="panel stack">
+        <p class="lead">${esc(T(TEACHER.intro))}</p>
+        <h2 style="font-size:1.4rem">${esc(T(TEACHER.waysTitle))}</h2>
+        <div class="tgrid">${TEACHER.ways.map(w => card(w.t, w.d)).join('')}</div>
+        <div class="tgrid">${card(TEACHER.levelsTitle, TEACHER.levels)}${card(TEACHER.scoreTitle, TEACHER.score)}${card(TEACHER.safetyTitle, TEACHER.safety)}${card(TEACHER.storageTitle, TEACHER.storage)}</div>
+        <h2 style="font-size:1.4rem">${esc(T(TEACHER.tableTitle))}</h2>
+        <div class="ttable-wrap"><table class="ttable"><thead><tr><th>${esc(T(TEACHER.thRoom))}</th><th>${esc(T(TEACHER.thSession))}</th><th>${esc(T(TEACHER.thWs))}</th><th>${esc(T(TEACHER.thPuzzles))}</th></tr></thead><tbody>${rows}</tbody></table></div>
+        <label class="switch" for="unlockAll"><input type="checkbox" id="unlockAll" ${state.unlockAll ? 'checked' : ''}><span class="label">${esc(T(TEACHER.unlockAll))}</span></label>
+        <div class="btn-row"><button class="btn btn-ghost" data-act="askReset">${I.refresh}${esc(T(TEACHER.resetAll))}</button></div>
+        ${confirm}
+      </section></div>`;
+  }
+
+  function overlay() {
+    if (!ui.overlay) return '';
+    return `<div class="overlay" data-act="overlayBg"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="ovt">
+      <h2 id="ovt">${esc(S('settings'))}</h2>
+      <p class="small">${esc(S('settingsNote'))}</p>
+      <label class="switch" for="optBig"><input type="checkbox" id="optBig" ${state.big ? 'checked' : ''}><span class="label">${esc(S('bigText'))}</span></label>
+      <label class="switch" for="optContrast"><input type="checkbox" id="optContrast" ${state.contrast ? 'checked' : ''}><span class="label">${esc(S('contrast'))}</span></label>
+      <div class="btn-row"><button class="btn btn-primary" data-act="overlay">${esc(S('close'))}</button></div>
+    </div></div>`;
+  }
+
+  const SCREENS = { home: screenHome, map: screenMap, room: screenRoom, door: screenDoor, end: screenEnd, teacher: screenTeacher };
+
+  function render(opts) {
+    const root = document.documentElement;
+    root.lang = state.lang === 'pt' ? 'pt-PT' : 'en-GB';
+    if (state.big) root.setAttribute('data-big', ''); else root.removeAttribute('data-big');
+    if (state.contrast) root.setAttribute('data-contrast', ''); else root.removeAttribute('data-contrast');
+    document.title = S('brand');
+    // remember focus
+    const a = document.activeElement;
+    let sel = null;
+    if (a && a.dataset && a.dataset.act) {
+      sel = `[data-act="${a.dataset.act}"]` + ['k', 'v', 'i', 'b', 'id'].map(x => a.dataset[x] != null ? `[data-${x}="${a.dataset[x]}"]` : '').join('');
+    } else if (a && a.id) sel = '#' + a.id;
+    $('#top').innerHTML = topbar();
+    $('#main').innerHTML = (SCREENS[state.screen] || screenHome)();
+    $('#ov').innerHTML = overlay();
+    $('#toast').innerHTML = ui.toast ? `<div class="toast" role="status">${esc(ui.toast)}</div>` : '';
+    if (opts && opts.top) { window.scrollTo(0, 0); const h = $('#h'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } }
+    else if (ui.overlay) { const c = $('#optBig'); if (c && !sel) c.focus(); }
+    else if (sel) { try { const el = $(sel); if (el && !el.disabled) el.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+  }
+  function go(screen) { stopSpeak(); state.screen = screen; ui.fb = null; ui.confirm = null; save(); render({ top: true }); }
+  function toast(msg) { ui.toast = msg; render(); clearTimeout(toast.t); toast.t = setTimeout(() => { ui.toast = ''; const t = $('#toast'); if (t) t.innerHTML = ''; }, 2200); }
+
+  /* ---------- speech ---------- */
+  function stopSpeak() { if (canSpeak) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } } ui.speaking = false; }
+  function speak(text) {
+    if (!canSpeak) return;
+    if (ui.speaking) { stopSpeak(); render(); return; }
+    try {
+      const u = new SpeechSynthesisUtterance(text);
+      const lang = state.lang === 'pt' ? 'pt-PT' : 'en-GB';
+      u.lang = lang; u.rate = 0.95;
+      const voices = window.speechSynthesis.getVoices() || [];
+      const v = voices.find(x => x.lang === lang) || voices.find(x => x.lang && x.lang.slice(0, 2) === lang.slice(0, 2));
+      if (v) u.voice = v;
+      u.onend = u.onerror = () => { ui.speaking = false; render(); };
+      ui.speaking = true;
+      window.speechSynthesis.speak(u);
+      render();
+    } catch (e) { ui.speaking = false; }
+  }
+
+  /* ---------- checking ---------- */
+  function solve(msg) {
+    const { rs, P } = current();
+    if (rs.done.indexOf(ui.pIndex) === -1) rs.done.push(ui.pIndex);
+    if (rs.done.length >= P.length) rs.solved = true;
+    ui.solvedNow = true;
+    ui.fb = { kind: 'ok', html: `<b>${state.lang === 'pt' ? 'Certo!' : 'Correct!'}</b> ${esc(msg)}` };
+    save();
+  }
+  function wrong(extra) {
+    current().rs.mistake = true;
+    ui.fb = { kind: 'bad', html: esc(extra || S('tryAgain')) };
+    save();
+  }
+  function check() {
+    const { P } = current();
+    const p = P[ui.pIndex], w = ui.work;
+    const notDone = () => { ui.fb = { kind: 'info', html: esc(S('notFinished')) }; };
+    if (p.type === 'order') {
+      const n = p.items.filter(lvOK).length;
+      if (w.placed.length < n) return notDone();
+      w.marks = w.placed.map((v, k) => v === k);
+      if (w.marks.every(Boolean)) return solve(T(p.success));
+      return wrong(`${S('tryAgain')} ${S('orderGreen')}`);
+    }
+    if (p.type === 'match') {
+      const n = p.pairs.filter(lvOK).length;
+      if (Object.keys(w.pairs).length < n) return notDone();
+      w.marks = Array.from({ length: n }, (_, k) => w.pairs[k] === k);
+      if (w.marks.every(Boolean)) return solve(T(p.success));
+      return wrong(`${S('tryAgain')} ${S('matchWrong')}`);
+    }
+    if (p.type === 'sort') {
+      if (w.order.some(k => w.ans[k] == null)) return notDone();
+      w.marks = {};
+      w.order.forEach(k => { w.marks[k] = w.ans[k] === p.items[k].bin; });
+      if (w.order.every(k => w.marks[k])) return solve(T(p.success));
+      return wrong(`${S('tryAgain')} ${S('sortWrong')}`);
+    }
+    if (p.type === 'choice') {
+      if (w.pick == null) { ui.fb = { kind: 'info', html: esc(S('choiceHelp')) }; return; }
+      const o = p.options[w.pick];
+      w.marks = {}; w.marks[w.pick] = !!o.ok;
+      if (o.ok) return solve(T(p.success));
+      return wrong(o.fb ? `${T(o.fb)}` : S('tryAgain'));
+    }
+    if (p.type === 'multi') {
+      if (!w.picks.length) { ui.fb = { kind: 'info', html: esc(S('multiHelp')) }; return; }
+      const good = w.order.filter(k => p.options[k].ok);
+      const ok = good.length === w.picks.length && good.every(k => w.picks.indexOf(k) !== -1);
+      w.marks = {};
+      w.picks.forEach(k => { w.marks[k] = !!p.options[k].ok; });
+      if (ok) return solve(T(p.success));
+      const missing = good.some(k => w.picks.indexOf(k) === -1);
+      return wrong(`${S('tryAgain')} ${missing ? (state.lang === 'pt' ? 'Ainda falta pelo menos uma resposta certa.' : 'At least one correct answer is still missing.') : ''}`);
+    }
+    if (p.type === 'reflect') {
+      const need = p.prompts.map((q, k) => lvOK(q) ? k : -1).filter(k => k >= 0);
+      if (need.some(k => !state.reflections[k] || state.reflections[k].trim().length < 2)) { ui.fb = { kind: 'info', html: esc(S('reflectEmpty')) }; return; }
+      return solve(T(p.success));
+    }
+  }
+
+  /* ---------- actions ---------- */
+  const ACT = {
+    home() { go('home'); },
+    lang(el) { stopSpeak(); state.lang = el.dataset.v; save(); render(); },
+    overlay() { ui.overlay = !ui.overlay; render(); },
+    overlayBg(el, e) { if (e.target === el) { ui.overlay = false; render(); } },
+    teacher() { if (state.screen !== 'teacher') state.back = state.screen; go('teacher'); },
+    back() { go(state.back && state.back !== 'teacher' ? state.back : 'home'); },
+    level(el) { if (state.started) return; state.level = el.dataset.v; save(); render(); },
+    start() { state.started = true; save(); go('map'); },
+    cont() { go('map'); },
+    askNew() { ui.confirm = 'new'; render(); },
+    confirmNo() { ui.confirm = null; render(); },
+    confirmNew() { state = fresh(state); ui.confirm = null; save(); render({ top: true }); },
+    askReset() { ui.confirm = 'reset'; render(); },
+    resetYes() { state = fresh(state); state.screen = 'teacher'; ui.confirm = null; save(); toast(T(TEACHER.resetDone)); },
+    playAgain() { state = fresh(state); save(); render({ top: true }); },
+    map() { go('map'); },
+    room(el) { const i = +el.dataset.i; if (!unlocked(i)) return; state.room = i; enterRoom(i); go('room'); },
+    nextRoom() { const i = state.room + 1; if (i < ROOMS.length && unlocked(i)) { state.room = i; enterRoom(i); go('room'); } else go('map'); },
+    door() { ui.door = []; go('door'); },
+    tab(el) { stopSpeak(); ui.tab = el.dataset.v; render({ top: true }); },
+    speak(el) {
+      if (el.dataset.v === 'home') return speak(S('homeLead'));
+      const { R, P } = current();
+      const p = P[ui.pIndex];
+      speak(`${T(R.intro)} ${p ? T(p.prompt) + ' ' + helpText(p) : ''}`);
+    },
+    hint() {
+      const { rs, P } = current();
+      rs.hint = true; save();
+      ui.fb = { kind: 'hint', html: `<b>${esc(S('hint'))}:</b> ${esc(T(P[ui.pIndex].hint))}` };
+      render();
+    },
+    reset() { const { P } = current(); ui.work = initWork(P[ui.pIndex]); ui.fb = null; render(); },
+    check() { check(); render(); },
+    nextPuzzle() {
+      const { rs, P } = current();
+      ui.solvedNow = false; ui.fb = null;
+      if (rs.solved) { ui.showDone = true; render({ top: true }); return; }
+      let k = ui.pIndex + 1;
+      while (k < P.length && rs.done.indexOf(k) !== -1) k++;
+      if (k >= P.length) { k = 0; while (k < P.length && rs.done.indexOf(k) !== -1) k++; }
+      ui.pIndex = k; ui.work = initWork(P[k]);
+      render();
+      const pz = $('#pz'); if (pz) { pz.setAttribute('tabindex', '-1'); pz.focus({ preventScroll: false }); }
+    },
+    opick(el) { const w = ui.work; const v = +el.dataset.k; if (w.placed.indexOf(v) === -1) w.placed.push(v); w.marks = null; ui.fb = null; render(); },
+    oslot(el) { const w = ui.work; w.placed.splice(+el.dataset.k, 1); w.marks = null; ui.fb = null; render(); },
+    mleft(el) { const w = ui.work; const k = +el.dataset.k; w.sel = w.sel === k ? null : k; render(); },
+    mright(el) {
+      const w = ui.work; const r = +el.dataset.k;
+      const owner = Object.keys(w.pairs).find(a => w.pairs[a] === r);
+      if (w.sel == null) { if (owner != null) { delete w.pairs[owner]; w.marks = null; } render(); return; }
+      if (owner != null) delete w.pairs[owner];
+      w.pairs[w.sel] = r; w.sel = null; w.marks = null; ui.fb = null;
+      const n = current().P[ui.pIndex].pairs.filter(lvOK).length;
+      for (let k = 0; k < n; k++) { if (w.pairs[k] == null) { w.sel = k; break; } }
+      render();
+    },
+    sbin(el) { const w = ui.work; w.ans[+el.dataset.k] = +el.dataset.b; w.marks = null; ui.fb = null; render(); },
+    cpick(el) { const w = ui.work; w.pick = +el.dataset.k; w.marks = null; ui.fb = null; render(); },
+    mpick(el) { const w = ui.work; const k = +el.dataset.k; const at = w.picks.indexOf(k); if (at === -1) w.picks.push(k); else w.picks.splice(at, 1); w.marks = null; ui.fb = null; render(); },
+    spot(el) {
+      const w = ui.work; const id = el.dataset.id;
+      const item = SPOT.find(s => s.id === id);
+      if (!item) return;
+      if (item.bad) { if (w.found.indexOf(id) === -1) w.found.push(id); ui.fb = { kind: 'bad', html: `<b>${state.lang === 'pt' ? 'Problema encontrado!' : 'Problem found!'}</b> ${esc(T(item.fb))}` }; }
+      else { if (w.ok.indexOf(id) === -1) w.ok.push(id); ui.fb = { kind: 'info', html: esc(T(item.fb)) }; }
+      const need = SPOT.filter(lvOK).filter(s => s.bad).length;
+      if (w.found.length >= need) solve(T(current().P[ui.pIndex].success));
+      render();
+    },
+    dtile(el) { const k = +el.dataset.k; if (ui.door.indexOf(k) === -1 && ui.door.length < T(WORD).length) ui.door.push(k); ui.fb = null; render(); },
+    dclear() { ui.door = []; ui.fb = null; render(); },
+    dhint() { ui.fb = { kind: 'hint', html: `<b>${esc(S('hint'))}:</b> ${esc(S('doorHint'))}` }; render(); },
+    dopen() {
+      const letters = state.slots.map(ri => T(ROOMS[ri].letter));
+      const word = ui.door.map(k => letters[k]).join('');
+      if (word === T(WORD)) { state.finished = true; state.finishedAt = Date.now(); save(); go('end'); return; }
+      ui.fb = { kind: 'bad', html: esc(ui.door.length < T(WORD).length ? S('notFinished') : S('doorWrong')) };
+      render();
+    }
+  };
+
+  /* ---------- events ---------- */
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-act]');
+    if (!el || el.disabled) return;
+    const fn = ACT[el.dataset.act];
+    if (fn) fn(el, e);
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && ui.overlay) { ui.overlay = false; render(); } });
+  document.addEventListener('input', e => {
+    const el = e.target;
+    if (el.id === 'team') { state.team = el.value.slice(0, 40); save(); }
+    else if (el.dataset && el.dataset.refl != null) { state.reflections[el.dataset.refl] = el.value.slice(0, 300); save(); }
+  });
+  document.addEventListener('change', e => {
+    const el = e.target;
+    if (el.id === 'timerOn') { state.timerOn = el.checked; save(); render(); }
+    else if (el.id === 'unlockAll') { state.unlockAll = el.checked; save(); render(); }
+    else if (el.id === 'optBig') { state.big = el.checked; save(); render(); }
+    else if (el.id === 'optContrast') { state.contrast = el.checked; save(); render(); }
+  });
+  let ticks = 0;
+  setInterval(() => {
+    if (!state || !state.timerOn || !state.started || state.finished) return;
+    if (state.screen === 'home' || state.screen === 'teacher') return;
+    if (document.visibilityState && document.visibilityState !== 'visible') return;
+    state.elapsed += 1000;
+    const t = document.getElementById('timer');
+    if (t) t.textContent = fmtTime(state.elapsed);
+    if (++ticks % 5 === 0) save();
+  }, 1000);
+
+  /* ---------- boot ---------- */
+  function boot(data) {
+    const snap = data && data.state;
+    state = (snap && snap.v === 1) ? snap : (load() || fresh());
+    if (data && data.ui) Object.assign(ui, data.ui, { speaking: false, overlay: false });
+    if (state.screen === 'room') { if (!ui.work) enterRoom(state.room); }
+    if (state.screen === 'end' && !state.finished) state.screen = 'map';
+    render();
+  }
+  try { if (window.claude && window.claude.hot && window.claude.hot.snapshot) window.claude.hot.snapshot(() => ({ state, ui })); } catch (e) { /* ignore */ }
+  if (window.claude && window.claude.hot && window.claude.hot.ready) window.claude.hot.ready(boot);
+  else boot((window.claude && window.claude.hot && window.claude.hot.data) || {});
+})();
+
+</script>
+</body>
+</html>
